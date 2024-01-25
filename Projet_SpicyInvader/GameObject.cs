@@ -12,10 +12,117 @@ using System.Threading.Tasks;
 namespace Projet_SpicyInvader
 {
     internal class GameObject
-    {
-        class SpaceShip
+    {        
+        public class SpaceShip
         {
+            int _positionSpaceshipX;
+            int _lives = 3;
+            bool _clearAThing = false;
+            bool _alive = false;
+            
 
-        }
+            /// <summary>
+            /// Déplacement du vaisseau
+            /// </summary>
+            public void Update()
+            {
+                _positionSpaceshipX = 120 / 2;
+
+                ConsoleKeyInfo SpaceshipMovement;
+
+                do
+                {
+                    Draw();
+                       
+                    SpaceshipMovement = Console.ReadKey();
+
+                    switch (SpaceshipMovement.Key)
+                    {
+
+                        case ConsoleKey.LeftArrow:
+                        case ConsoleKey.A:
+                            if (_positionSpaceshipX == 6)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                _positionSpaceshipX--;
+                                _clearAThing = true;
+                            }
+                            break;
+                        case ConsoleKey.RightArrow:
+                        case ConsoleKey.D:
+                            if (_positionSpaceshipX == 110)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                _positionSpaceshipX++;
+                                _clearAThing=false;
+                            }
+                            break;                       
+                        default:
+                            break;
+                    }
+
+                } while (SpaceshipMovement.Key != ConsoleKey.Escape);
+            }
+            
+            /// <summary>
+            /// Affiche le vaisseau
+            /// </summary>
+            public void Draw()
+            {
+                ClearSpaceship();
+                Console.SetCursorPosition(_positionSpaceshipX, 35);
+                Console.Write("('-')");
+            }
+
+            /// <summary>
+            /// Supprime le vaisseau de la position pécédente
+            /// </summary>
+            public void ClearSpaceship()
+            {
+
+                for (int i = 0; i < 5; i++)
+                {
+                    if (_clearAThing == true)
+                    {
+                        if (_positionSpaceshipX == 6)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(_positionSpaceshipX - i + 5, 35);
+                            Console.Write("  ");
+
+                        }
+                    }
+                    else
+                    {
+                        if (_positionSpaceshipX == 110)
+                        {
+                            break;                            
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(_positionSpaceshipX - i, 35);
+                            Console.Write("  ");
+                        }
+                    }
+                }
+            }
+
+            public void IsAlive()
+            {
+                if (_lives > 0)
+                {
+                    _alive = true;
+                }
+            }
+        }       
     }
 }

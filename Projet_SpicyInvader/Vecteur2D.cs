@@ -17,6 +17,11 @@ namespace Projet_SpicyInvader
         private double x = 0;
         private double y = 0;
         public double Norme;
+        const int CONSOLEWINDOWSWIDHT = 120;
+        const int CONSOLEWINDOWSHEIGHT = 40;
+
+    
+            
         
     }
 }

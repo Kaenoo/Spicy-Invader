@@ -12,19 +12,23 @@ using System.Threading.Tasks;
 namespace Projet_SpicyInvader
 {
     internal class Game
-    {
+    {      
+
         /// <summary>
         /// Lancement du programme
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
-        {
+        {            
+            Console.WindowWidth = 120;
+            Console.WindowHeight = 40;
             //Lancement du menu du jeu
             Menu();
+            
 
             Console.ReadLine();
         }
-
+        
         /// <summary>
         /// Menu de démarrage
         /// </summary>
@@ -32,9 +36,9 @@ namespace Projet_SpicyInvader
         {
             string choiceOfMenu;
 
-            Console.WriteLine("**********************************************************************************" );
-            Console.WriteLine("                           Bienvenue sur Space Invaders");
-            Console.WriteLine("**********************************************************************************\n\n" );
+            Console.WriteLine("                 **********************************************************************************" );
+            Console.WriteLine("                                            Bienvenue sur Space Invaders");
+            Console.WriteLine("                 **********************************************************************************\n\n");
             Console.WriteLine("1. Jouer\n2. Options\n3. A propos\n4. Quitter\n\n");
             Console.Write("Mettez le chiffre de l'action que vous souhaitez réaliser : ");
             choiceOfMenu = Console.ReadLine();
@@ -44,7 +48,7 @@ namespace Projet_SpicyInvader
             switch (choiceOfMenu)
             {
                 case "1":
-                        ;
+                      GameSP();
                     break;
 
                 case "2":
@@ -64,6 +68,18 @@ namespace Projet_SpicyInvader
                     Menu();
                     break;
             }
+        }
+
+        /// <summary>
+        /// Lance le jeu
+        /// </summary>
+        public static void GameSP()
+        {
+            GameObject.SpaceShip playerShip = new GameObject.SpaceShip();   
+            Missile missile = new Missile();
+            
+            playerShip.Update();
+            missile.Shoot();
         }
 
         /// <summary>
