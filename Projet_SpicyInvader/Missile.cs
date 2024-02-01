@@ -7,46 +7,58 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Projet_SpicyInvader
 {
-    internal class Missile : GameObject
+    internal class Missile
     {
-        int _livesMissiles;
-        int _missilePosition;
+        private int _x;
+        private int _y;
+        int _livesMissiles = 1;
+
+        public int X { get => _x; }
+        public int Y { get => _y; }
+
+        public Missile(int XBeginning, int YBeginning)
+        {
+            _x = XBeginning;
+            _y = YBeginning;
+        }
        
+        /// <summary>
+        /// Tire les missiles
+        /// </summary>
         public void Shoot()
         {
-            _missilePosition = 36;
-            ConsoleKeyInfo MissileMovement;
-
-            do
-            {
-                MissileMovement = Console.ReadKey();
-
-                if (MissileMovement.Key == ConsoleKey.Spacebar)
+                for (int i = 0; i < 32; i++)
                 {
-                    for (int i = 0; i < 45; i++)
-                    {
-                        DrawMissile();
-
-                    }
+                    DrawMissile();
+                    _y--;
                 }
+            /*do
+            {
 
-            } while (_livesMissiles != 0);
+            } while (_livesMissiles != 0);*/
         }
 
+        /// <summary>
+        /// Affiche le missile
+        /// </summary>
         public void DrawMissile()
         {
-            UnDrawMissile();
-            Console.SetCursorPosition(30, 36);
+           // UnDrawMissile();
+            Console.SetCursorPosition(_x, _y);
             Console.Write("¦");
         }
 
+        /// <summary>
+        /// Efface le missile
+        /// </summary>
         public void UnDrawMissile()
         {
-
+            Console.SetCursorPosition(X, Y + 1);
             Console.Write(" ");
         }
     }

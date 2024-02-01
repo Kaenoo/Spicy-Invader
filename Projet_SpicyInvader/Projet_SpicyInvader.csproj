@@ -43,9 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Invaders.cs" />
     <Compile Include="Missile.cs" />
     <Compile Include="Vecteur2D.cs" />
-    <Compile Include="GameObject.cs" />
+    <Compile Include="PlayerShip.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

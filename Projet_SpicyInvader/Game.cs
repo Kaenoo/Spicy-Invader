@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Projet_SpicyInvader
@@ -19,14 +20,12 @@ namespace Projet_SpicyInvader
         /// </summary>
         /// <param name="args"></param>
         static void Main(string[] args)
-        {            
+        {     
+            //initialisation des dimensions de la fenêtre de la console
             Console.WindowWidth = 120;
             Console.WindowHeight = 40;
             //Lancement du menu du jeu
-            Menu();
-            
-
-            Console.ReadLine();
+            Menu();           
         }
         
         /// <summary>
@@ -68,6 +67,8 @@ namespace Projet_SpicyInvader
                     Menu();
                     break;
             }
+
+            Console.ReadLine();
         }
 
         /// <summary>
@@ -75,11 +76,19 @@ namespace Projet_SpicyInvader
         /// </summary>
         public static void GameSP()
         {
-            GameObject.SpaceShip playerShip = new GameObject.SpaceShip();   
-            Missile missile = new Missile();
-            
+            SpaceShip playerShip = new SpaceShip();   
+            Missile missile = new Missile(playerShip.PositionX, 33);
             playerShip.Update();
-            missile.Shoot();
+
+            ConsoleKeyInfo MissileLauching = Console.ReadKey();
+            while (playerShip.Alive() != false)
+            {
+                //Si l'user appuie sur Espace, le missile se lance
+                if (MissileLauching.Key == ConsoleKey.Spacebar)
+                {
+                     missile.Shoot();                                        
+                }
+            }            
         }
 
         /// <summary>
@@ -102,13 +111,13 @@ namespace Projet_SpicyInvader
                 if (choiceOfOptions == "1")
                 {
                     Console.Clear();
-                    Console.WriteLine("Son activé");
+                    ShowAndErase("Son activé", TimeSpan.FromSeconds(1));
                     Menu();
                 }
                 else if (choiceOfOptions == "2")
                 {
                     Console.Clear();
-                    Console.WriteLine("Son désactivé");
+                    ShowAndErase("Son désactivé", TimeSpan.FromSeconds(1));
                     Menu();
                 }
                 else
@@ -127,13 +136,13 @@ namespace Projet_SpicyInvader
                 if (choiceOfOptions == "1")
                 {
                     Console.Clear();
-                    Console.WriteLine("Niveau facile activé");
+                    ShowAndErase("Niveau facile activé", TimeSpan.FromSeconds(1));
                     Menu();
                 }
                 else if (choiceOfOptions == "2")
                 {
                     Console.Clear();
-                    Console.WriteLine("Niveau difficile activé");
+                    ShowAndErase("Niveau difficile activé", TimeSpan.FromSeconds(1));
                     Menu();
                 }                
                 else
@@ -163,6 +172,13 @@ namespace Projet_SpicyInvader
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("Vous n'avez pas inséré les chiffres attendus. Veuillez recommencer.\n\n");
             Console.ResetColor();
+        }
+
+        public static void ShowAndErase(string text, TimeSpan TimeToShow)
+        {
+            Console.WriteLine(text);
+            Thread.Sleep(TimeToShow);
+            Console.Clear();
         }
     }
 }
