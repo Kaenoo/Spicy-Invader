@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using System.Diagnostics;
 
 
 namespace Projet_SpicyInvader
@@ -16,9 +18,9 @@ namespace Projet_SpicyInvader
     /// <summary>
     /// Classe vaisseau
     /// </summary>
-    internal class SpaceShip
+    internal class PlayerShip
     {
-        int _positionSpaceshipX;
+        int _positionSpaceshipX = 120/2;
         int _lives = 3;
         bool _clearAThing = false;
         bool _alive = true;
@@ -28,20 +30,35 @@ namespace Projet_SpicyInvader
             return _alive;
         }
             
+          
 
         /// <summary>
         /// Déplacement du vaisseau
         /// </summary>
-        public void Update()
+        public void Move(bool boolchoice)
         {
             //
-            _positionSpaceshipX = 120 / 2;
-
-            ConsoleKeyInfo SpaceshipMovement;
-
-            do
+                    
+            if (boolchoice == false)
             {
-                Draw();
+                if (_positionSpaceshipX > 5)
+                {
+                    _positionSpaceshipX--;
+                    _clearAThing = true;
+                }
+            }
+            else if (boolchoice == true)
+            {
+                if (_positionSpaceshipX < 110)
+                {
+                    _positionSpaceshipX++;
+                    _clearAThing = false;
+                }
+            }   
+
+           /* ConsoleKeyInfo SpaceshipMovement;
+
+              Draw();
                        
                 SpaceshipMovement = Console.ReadKey();
 
@@ -49,7 +66,6 @@ namespace Projet_SpicyInvader
                 {
 
                     case ConsoleKey.LeftArrow:
-                    case ConsoleKey.A:
                         if (_positionSpaceshipX == 6)
                         {
                             break;
@@ -61,7 +77,6 @@ namespace Projet_SpicyInvader
                         }
                         break;
                     case ConsoleKey.RightArrow:
-                    case ConsoleKey.D:
                         if (_positionSpaceshipX == 110)
                         {
                             break;
@@ -73,11 +88,9 @@ namespace Projet_SpicyInvader
                         }
                         break;                       
                     default:
-                        break;
-                }
-
-            } while (SpaceshipMovement.Key != ConsoleKey.Escape);
-        }
+                        break;*/
+                /*}            
+*/        }
             
         /// <summary>
         /// Affiche le vaisseau
@@ -86,7 +99,10 @@ namespace Projet_SpicyInvader
         {
             ClearSpaceship();
             Console.SetCursorPosition(_positionSpaceshipX, 35);
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("('-')");
+            Console.ResetColor();
+            
         }
 
         /// <summary>
@@ -105,7 +121,7 @@ namespace Projet_SpicyInvader
                     }
                     else
                     {
-                        Console.SetCursorPosition(_positionSpaceshipX - i + 5, 35);
+                        Console.SetCursorPosition(_positionSpaceshipX + 5 - i , 35);
                         Console.Write("  ");
 
                     }
@@ -119,7 +135,7 @@ namespace Projet_SpicyInvader
                     else
                     {
                         Console.SetCursorPosition(_positionSpaceshipX - i , 35);
-                        Console.Write("  ");
+                        Console.Write(" ");
                     }
                 }
             }

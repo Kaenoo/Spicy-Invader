@@ -14,33 +14,26 @@ namespace Projet_SpicyInvader
 {
     internal class Missile
     {
-        private int _x;
-        private int _y;
+        internal int _x;
+        internal int _y;
         int _livesMissiles = 1;
-
-        public int X { get => _x; }
-        public int Y { get => _y; }
+        bool NoUndrawShip = true;
 
         public Missile(int XBeginning, int YBeginning)
         {
             _x = XBeginning;
             _y = YBeginning;
         }
-       
+        public int X { get => _x; }
+        public int Y { get => _y; }
+
         /// <summary>
         /// Tire les missiles
         /// </summary>
         public void Shoot()
-        {
-                for (int i = 0; i < 32; i++)
-                {
-                    DrawMissile();
-                    _y--;
-                }
-            /*do
-            {
-
-            } while (_livesMissiles != 0);*/
+        {  
+            _y--;            
+           
         }
 
         /// <summary>
@@ -48,18 +41,36 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void DrawMissile()
         {
-           // UnDrawMissile();
-            Console.SetCursorPosition(_x, _y);
+            if (_y == 2)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.SetCursorPosition(_x + 2, _y);
+                    Console.Write(" ");
+                    _y++;
+                }
+                _y = 33;
+            }
+
+            Console.SetCursorPosition(_x + 2, _y);
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("¦");
+            Console.ResetColor();
+            if (NoUndrawShip == false)
+            {
+                UnDrawMissile();
+            }
+            NoUndrawShip = false;
+
         }
 
         /// <summary>
         /// Efface le missile
         /// </summary>
         public void UnDrawMissile()
-        {
-            Console.SetCursorPosition(X, Y + 1);
-            Console.Write(" ");
+        {                       
+            Console.SetCursorPosition(_x + 2, _y +2);
+            Console.Write(" ");                                               
         }
     }
 }

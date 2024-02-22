@@ -9,16 +9,23 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace Projet_SpicyInvader
 {
     internal class Game
     {      
-
+        public Game()
+        {
+            PlayerShip player;
+            Missile missile;
+            Invaders invaders;
+        }
         /// <summary>
         /// Lancement du programme
         /// </summary>
         /// <param name="args"></param>
+        [STAThread]
         static void Main(string[] args)
         {     
             //initialisation des dimensions de la fenêtre de la console
@@ -34,61 +41,116 @@ namespace Projet_SpicyInvader
         public static void Menu()
         {
             string choiceOfMenu;
-
-            Console.WriteLine("                 **********************************************************************************" );
-            Console.WriteLine("                                            Bienvenue sur Space Invaders");
-            Console.WriteLine("                 **********************************************************************************\n\n");
-            Console.WriteLine("1. Jouer\n2. Options\n3. A propos\n4. Quitter\n\n");
-            Console.Write("Mettez le chiffre de l'action que vous souhaitez réaliser : ");
-            choiceOfMenu = Console.ReadLine();
-
-            Console.Clear();
-
-            switch (choiceOfMenu)
+            do
             {
-                case "1":
-                      GameSP();
-                    break;
+                Console.WriteLine("                 **********************************************************************************" );
+                Console.WriteLine("                                            Bienvenue sur Space Invaders");
+                Console.WriteLine("                 **********************************************************************************\n\n");
+                Console.WriteLine("1. Jouer\n2. Options\n3. A propos\n4. Quitter\n\n");
+                Console.Write("Mettez le chiffre de l'action que vous souhaitez réaliser : ");
+                choiceOfMenu = Console.ReadLine();
 
-                case "2":
-                    Options();
-                    break ;
+                Console.Clear();
+                switch (choiceOfMenu)
+                {
+                    case "1":
+                          GameSP();
+                        break;
 
-                case "3":
-                    Console.WriteLine("");
-                    break;
+                    case "2":
+                        Options();
+                        break ;
 
-                case "4":
-                    Environment.Exit(0);
-                    break;
+                    case "3":
+                        Console.WriteLine("");
+                        break;
 
-                    default:
-                    Error();
-                    Menu();
-                    break;
-            }
+                    case "4":
+                        Environment.Exit(0);
+                        break;
 
-            Console.ReadLine();
+                        default:
+                        Error();
+                        Menu();
+                        break;
+                }               
+
+            } while (true);
         }
-
+        
         /// <summary>
         /// Lance le jeu
         /// </summary>
         public static void GameSP()
         {
-            SpaceShip playerShip = new SpaceShip();   
-            Missile missile = new Missile(playerShip.PositionX, 33);
-            playerShip.Update();
+            int _score = 0;
+            int _highscore = 0;            
 
-            ConsoleKeyInfo MissileLauching = Console.ReadKey();
-            while (playerShip.Alive() != false)
+            PlayerShip playerShip = new PlayerShip();
+            Invaders badInvaders = new Invaders();
+            Missile missile = new Missile(playerShip.PositionX, 33);
+            
+
+            if (_score > _highscore)
             {
-                //Si l'user appuie sur Espace, le missile se lance
-                if (MissileLauching.Key == ConsoleKey.Spacebar)
-                {
-                     missile.Shoot();                                        
-                }
-            }            
+                _highscore = _score;
+            }
+            Console.WriteLine($"Score : {_score}    High-Score : {_highscore} ");
+
+
+             while (playerShip.Alive() != false)
+             {                
+                KeyPressChosen(playerShip, missile);
+                Update(playerShip,missile);
+                Draw(playerShip, missile);
+
+                Thread.Sleep(20);               
+             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="playerShip"></param>
+        /// <param name="m"></param>
+        public static void KeyPressChosen(PlayerShip playerShip, Missile m)
+        {
+
+            if (Keyboard.IsKeyDown(Key.Left))
+            {
+                playerShip.Move(false);
+            }
+            else if(Keyboard.IsKeyDown(Key.Right))
+            {
+                playerShip.Move(true);
+            }
+            else if (Keyboard.IsKeyDown(Key.Space))
+            {
+                m = new Missile(playerShip.PositionX, 33);
+                m._x = playerShip.PositionX;
+                
+            }                                      
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="playerShip"></param>
+        /// <param name="m"></param>
+        public static void Update(PlayerShip playerShip, Missile m)
+        {
+            m._y--;           
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="playerShip"></param>
+        /// <param name="m"></param>
+        public static void Draw(PlayerShip playerShip, Missile m)
+        {
+            playerShip.Draw();
+            m.DrawMissile();
         }
 
         /// <summary>
