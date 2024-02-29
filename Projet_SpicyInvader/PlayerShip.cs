@@ -28,17 +28,14 @@ namespace Projet_SpicyInvader
         public bool Alive()
         {
             return _alive;
-        }
-            
-          
+        }         
 
         /// <summary>
         /// Déplacement du vaisseau
         /// </summary>
         public void Move(bool boolchoice)
         {
-            //
-                    
+            //                    
             if (boolchoice == false)
             {
                 if (_positionSpaceshipX > 5)
@@ -54,43 +51,8 @@ namespace Projet_SpicyInvader
                     _positionSpaceshipX++;
                     _clearAThing = false;
                 }
-            }   
-
-           /* ConsoleKeyInfo SpaceshipMovement;
-
-              Draw();
-                       
-                SpaceshipMovement = Console.ReadKey();
-
-                switch (SpaceshipMovement.Key)
-                {
-
-                    case ConsoleKey.LeftArrow:
-                        if (_positionSpaceshipX == 6)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            _positionSpaceshipX--;
-                            _clearAThing = true;
-                        }
-                        break;
-                    case ConsoleKey.RightArrow:
-                        if (_positionSpaceshipX == 110)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            _positionSpaceshipX++;
-                            _clearAThing=false;
-                        }
-                        break;                       
-                    default:
-                        break;*/
-                /*}            
-*/        }
+            }        
+        }
             
         /// <summary>
         /// Affiche le vaisseau

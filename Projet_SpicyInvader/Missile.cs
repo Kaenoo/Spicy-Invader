@@ -17,7 +17,15 @@ namespace Projet_SpicyInvader
         internal int _x;
         internal int _y;
         int _livesMissiles = 1;
-        bool NoUndrawShip = true;
+        private bool _isMissile = false;
+
+
+        public bool IsMissile
+        {
+            get { return _isMissile; }
+            set { _isMissile = value; }
+        }
+
 
         public Missile(int XBeginning, int YBeginning)
         {
@@ -31,9 +39,8 @@ namespace Projet_SpicyInvader
         /// Tire les missiles
         /// </summary>
         public void Shoot()
-        {  
-            _y--;            
-           
+        {
+            _y--;
         }
 
         /// <summary>
@@ -41,27 +48,19 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void DrawMissile()
         {
-            if (_y == 2)
-            {
-                for (int i = 0; i < 3; i++)
-                {
-                    Console.SetCursorPosition(_x + 2, _y);
-                    Console.Write(" ");
-                    _y++;
-                }
-                _y = 33;
-            }
-
             Console.SetCursorPosition(_x + 2, _y);
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("¦");
             Console.ResetColor();
-            if (NoUndrawShip == false)
-            {
                 UnDrawMissile();
+            if (_y == 2)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Console.SetCursorPosition(_x + 2, _y + 2 -i);
+                    Console.Write(" ");
+                }                
             }
-            NoUndrawShip = false;
-
         }
 
         /// <summary>

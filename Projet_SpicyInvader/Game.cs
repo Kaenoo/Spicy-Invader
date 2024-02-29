@@ -10,11 +10,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Timers;
+
 
 namespace Projet_SpicyInvader
 {
     internal class Game
     {      
+        
         public Game()
         {
             PlayerShip player;
@@ -85,26 +88,26 @@ namespace Projet_SpicyInvader
         {
             int _score = 0;
             int _highscore = 0;            
-
+           
             PlayerShip playerShip = new PlayerShip();
             Invaders badInvaders = new Invaders();
             Missile missile = new Missile(playerShip.PositionX, 33);
-            
-
-            if (_score > _highscore)
-            {
-                _highscore = _score;
-            }
-            Console.WriteLine($"Score : {_score}    High-Score : {_highscore} ");
-
 
              while (playerShip.Alive() != false)
-             {                
-                KeyPressChosen(playerShip, missile);
-                Update(playerShip,missile);
-                Draw(playerShip, missile);
+             {  
+                _score++;
+                if (_score > _highscore)
+                {
+                    _highscore = _score;
+                }
+                Console.SetCursorPosition(0,0);
+                Console.WriteLine($"Score : {_score}    High-Score : {_highscore} ");
 
-                Thread.Sleep(20);               
+                KeyPressChosen(playerShip, missile);
+                Update(playerShip, missile,badInvaders);
+                Draw(playerShip, missile, badInvaders);
+                
+                Thread.Sleep(20);
              }
         }
 
@@ -115,20 +118,42 @@ namespace Projet_SpicyInvader
         /// <param name="m"></param>
         public static void KeyPressChosen(PlayerShip playerShip, Missile m)
         {
-
             if (Keyboard.IsKeyDown(Key.Left))
             {
                 playerShip.Move(false);
+
+                if (Keyboard.IsKeyDown(Key.Space))
+                {
+                    if (m.IsMissile is false)
+                    {
+                        m._x = playerShip.PositionX;
+                        m._y = 33;
+                        m.IsMissile = true;
+                    }
+                }
             }
             else if(Keyboard.IsKeyDown(Key.Right))
             {
                 playerShip.Move(true);
+
+                if (Keyboard.IsKeyDown(Key.Space))
+                {
+                    if (m.IsMissile is false)
+                    {
+                        m._x = playerShip.PositionX;
+                        m._y = 33;
+                        m.IsMissile = true;
+                    }
+                }
             }
             else if (Keyboard.IsKeyDown(Key.Space))
             {
-                m = new Missile(playerShip.PositionX, 33);
-                m._x = playerShip.PositionX;
-                
+                if (m.IsMissile is false)
+                {
+                    m._x = playerShip.PositionX;
+                    m._y = 33;
+                    m.IsMissile = true;
+                }
             }                                      
         }
 
@@ -137,9 +162,25 @@ namespace Projet_SpicyInvader
         /// </summary>
         /// <param name="playerShip"></param>
         /// <param name="m"></param>
-        public static void Update(PlayerShip playerShip, Missile m)
+        public static void Update(PlayerShip playerShip, Missile m, Invaders enemies)
         {
-            m._y--;           
+            if (m._y == 2)
+            {
+                m.IsMissile = false;   
+            }
+            else if (m.IsMissile is true)
+            {
+                m.Shoot();
+            }
+            if (enemies.Invadersdie is false)
+            {
+                enemies.Update();
+            }
+            else if(enemies.Invadersdie is true)
+            {
+                
+            }
+                    
         }
 
         /// <summary>
@@ -147,10 +188,28 @@ namespace Projet_SpicyInvader
         /// </summary>
         /// <param name="playerShip"></param>
         /// <param name="m"></param>
-        public static void Draw(PlayerShip playerShip, Missile m)
+        public static void Draw(PlayerShip playerShip, Missile m, Invaders enemies)
         {
             playerShip.Draw();
-            m.DrawMissile();
+            if (m.IsMissile == true)
+            {
+                m.DrawMissile();
+            }
+            enemies.Draw();
+
+            //Hitbox
+            if (m.Y == enemies.Y && m.X == enemies.Y)
+            {
+                enemies.Undraw();
+                enemies.Invadersdie = true;
+            }
+
+            if (enemies.Y == 35)
+            {
+                Console.SetCursorPosition(15, 15);
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Game Over, appuyer sur un bouton pour revenir au menu.");
+            }
         }
 
         /// <summary>

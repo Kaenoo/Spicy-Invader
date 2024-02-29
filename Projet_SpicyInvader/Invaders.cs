@@ -4,27 +4,60 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
+using System drawing;
 
 namespace Projet_SpicyInvader
 {
     internal class Invaders
-    {
-        Random randomApparition = new Random();
-        
-        int _Y = 5;
-        int _X = 0;
+    {        
+        private int _Y = 3;
+        private int _X = 5;
+        private bool _invadersdie = false;
+        bool leftOrRight = false;
 
+        public int Y
+        {
+            get { return _Y; }
+            set { _Y = value; }
+        }
+
+        public int X
+        {
+            get { return _X; }
+            set { _X = value; }
+        }
+
+        public bool Invadersdie
+        {
+            get { return _invadersdie; }
+            set { _invadersdie = value; }
+        }
         public void Update()
         {
-            _Y = 5;
-            
-            _X = randomApparition.Next(108) + 1;
-            for (int i = 0; i < 28; i++)
+            if (leftOrRight is false)
             {
-                Draw();
+                _X++;
+            }
+            else if (leftOrRight is true)
+            {
+                _X--;
+            }
+
+            if (_X == 110)
+            {
+                Console.SetCursorPosition(109,_Y);
+                Console.Write("     ");
                 _Y++;
-                Thread.Sleep(500);
-            }            
+                leftOrRight = true;
+            }
+            else if (_X == 5)
+            {
+                Console.SetCursorPosition(6, _Y);
+                Console.Write("     ");
+                _Y++;
+                leftOrRight = false;
+            }
+         
         }
 
         public void Draw()
@@ -34,12 +67,22 @@ namespace Projet_SpicyInvader
             Console.Write("´-_-`");
             Console.ResetColor();
             Undraw();
+
         }
 
         public void Undraw()
         {
-            Console.SetCursorPosition(_X, _Y -1);
-            Console.Write("     ");
+            if (leftOrRight is false)
+            {
+                Console.SetCursorPosition(_X - 4, _Y);
+                Console.Write("    ");
+            }
+            else if (leftOrRight is true)
+            {
+                Console.SetCursorPosition(_X + 5, _Y);
+                Console.Write("    ");
+            }
+           
         }
     }
 }
