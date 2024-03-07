@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Projet_SpicyInvader
 {
@@ -16,16 +17,13 @@ namespace Projet_SpicyInvader
     {
         internal int _x;
         internal int _y;
-        int _livesMissiles = 1;
         private bool _isMissile = false;
-
 
         public bool IsMissile
         {
             get { return _isMissile; }
             set { _isMissile = value; }
         }
-
 
         public Missile(int XBeginning, int YBeginning)
         {
@@ -52,7 +50,7 @@ namespace Projet_SpicyInvader
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("¦");
             Console.ResetColor();
-                UnDrawMissile();
+            UnDrawMissile();
             if (_y == 2)
             {
                 for (int i = 0; i < 3; i++)
@@ -70,6 +68,20 @@ namespace Projet_SpicyInvader
         {                       
             Console.SetCursorPosition(_x + 2, _y +2);
             Console.Write(" ");                                               
+        }
+
+        public void UnDrawMissileActualPosition()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Console.SetCursorPosition(_x + 2, _y + 2 - i);
+                Console.Write(" ");
+            }
+        }
+
+        public Rectangle hitbox()
+        {
+            return new Rectangle(_x, _y, 1, 2);
         }
     }
 }

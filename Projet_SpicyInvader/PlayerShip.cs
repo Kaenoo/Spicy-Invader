@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Diagnostics;
+using System.Drawing;
 
 
 namespace Projet_SpicyInvader
@@ -21,10 +22,16 @@ namespace Projet_SpicyInvader
     internal class PlayerShip
     {
         int _positionSpaceshipX = 120/2;
-        int _lives = 3;
         bool _clearAThing = false;
-        bool _alive = true;
+        private bool _alive = true;
 
+        public int PositionX { get { return _positionSpaceshipX; } set { _positionSpaceshipX = value; } }
+        public bool alive { get { return _alive; } set { _alive = value; } }
+
+        /// <summary>
+        /// Détermine si l'user est en vie
+        /// </summary>
+        /// <returns></returns>
         public bool Alive()
         {
             return _alive;
@@ -64,11 +71,10 @@ namespace Projet_SpicyInvader
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("('-')");
             Console.ResetColor();
-            
         }
 
         /// <summary>
-        /// Supprime le vaisseau de la position pécédente
+        /// Supprime le vaisseau de sa position pécédente
         /// </summary>
         public void ClearSpaceship()
         {
@@ -103,22 +109,6 @@ namespace Projet_SpicyInvader
             }
         }
 
-        /// <summary>
-        /// Vérifie que le vaisseau est en vie
-        /// </summary>
-        public void IsAlive()
-        {
-            if (_lives > 0)
-            {
-                _alive = true;
-            }
-        }
-
-        public int PositionX
-        {
-            get { return _positionSpaceshipX; }
-            set { _positionSpaceshipX = value; }
-        }
     }       
     
 }

@@ -11,18 +11,16 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Timers;
+using System.Drawing;
 
 
 namespace Projet_SpicyInvader
 {
     internal class Game
-    {      
-        
+    {        
         public Game()
         {
-            PlayerShip player;
-            Missile missile;
-            Invaders invaders;
+
         }
         /// <summary>
         /// Lancement du programme
@@ -85,34 +83,29 @@ namespace Projet_SpicyInvader
         /// Lance le jeu
         /// </summary>
         public static void GameSP()
-        {
-            int _score = 0;
-            int _highscore = 0;            
+        {       
            
             PlayerShip playerShip = new PlayerShip();
             Invaders badInvaders = new Invaders();
             Missile missile = new Missile(playerShip.PositionX, 33);
+            Brick wall = new Brick();
+            Score scoreGame = new Score();
+
+            wall.Draw();
 
              while (playerShip.Alive() != false)
-             {  
-                _score++;
-                if (_score > _highscore)
-                {
-                    _highscore = _score;
-                }
-                Console.SetCursorPosition(0,0);
-                Console.WriteLine($"Score : {_score}    High-Score : {_highscore} ");
-
+             {
+                scoreGame.AddPoints();
                 KeyPressChosen(playerShip, missile);
                 Update(playerShip, missile,badInvaders);
-                Draw(playerShip, missile, badInvaders);
+                Draw(playerShip, missile, badInvaders, scoreGame);
                 
                 Thread.Sleep(20);
              }
         }
 
         /// <summary>
-        /// 
+        /// Exécute une action en fonction de la touche pressée
         /// </summary>
         /// <param name="playerShip"></param>
         /// <param name="m"></param>
@@ -158,7 +151,7 @@ namespace Projet_SpicyInvader
         }
 
         /// <summary>
-        /// 
+        /// Mise à jour de l'emplacement des objets
         /// </summary>
         /// <param name="playerShip"></param>
         /// <param name="m"></param>
@@ -176,34 +169,42 @@ namespace Projet_SpicyInvader
             {
                 enemies.Update();
             }
-            else if(enemies.Invadersdie is true)
+            else if(enemies.Invadersdie == true)
             {
-                
-            }
-                    
+                enemies.X = 5;
+                enemies.Y = 3;
+                enemies.Invadersdie = false;
+                enemies.leftOrRight = false;
+            }                    
         }
 
         /// <summary>
-        /// 
+        /// Dessine les objets à leur position actuelle
         /// </summary>
         /// <param name="playerShip"></param>
         /// <param name="m"></param>
-        public static void Draw(PlayerShip playerShip, Missile m, Invaders enemies)
+        public static void Draw(PlayerShip playerShip, Missile m, Invaders enemies, Score score)
         {
             playerShip.Draw();
+            //Si un missile a été lancé, alors ça le dessine
             if (m.IsMissile == true)
             {
                 m.DrawMissile();
             }
             enemies.Draw();
 
-            //Hitbox
-            if (m.Y == enemies.Y && m.X == enemies.Y)
+            //Supprime l'ennemi s'il est touché par un missile
+            if (m.hitbox().IntersectsWith(enemies.hitbox()))
             {
-                enemies.Undraw();
+                m.UnDrawMissileActualPosition();
+                enemies.UndrawActualPosition();
+                m._y = 2;
+                m._x = 2;
                 enemies.Invadersdie = true;
+                score.AddPoints();
+                
             }
-
+            //Si l'ennemi est sur la même hauteur que le vaisseau -> PERDU
             if (enemies.Y == 35)
             {
                 Console.SetCursorPosition(15, 15);
@@ -295,6 +296,11 @@ namespace Projet_SpicyInvader
             Console.ResetColor();
         }
 
+        /// <summary>
+        /// Court temps accordé à l'user pour confirmer le choix d'une option
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="TimeToShow"></param>
         public static void ShowAndErase(string text, TimeSpan TimeToShow)
         {
             Console.WriteLine(text);
