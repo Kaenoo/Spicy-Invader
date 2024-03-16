@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Brick.cs" />
+    <Compile Include="Wall.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="Invaders.cs" />
     <Compile Include="Missile.cs" />

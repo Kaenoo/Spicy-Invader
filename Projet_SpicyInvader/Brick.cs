@@ -8,32 +8,13 @@ namespace Projet_SpicyInvader
 {
     internal class Brick
     {
-        private int _x = 10;
-        private int _y = 28;
-
+        private int _x;
+        private int _y;
+        private string _brick = "¬";
         public int x { get { return _x; } set { _x = value; } }
-        public int y
-        {
-            get { return _y; }
-            set { _y = value; }
-        }
-        
-        public void Draw()
-        {
-            for (int k = 0; k < 4; k++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    for (int i = 0; i < 15; i++)
-                    {
-                        Console.SetCursorPosition(_x + i, _y +j);
-                        Console.WriteLine("¬");
-                    }
-                }
-                _x += 25;
-            }
+        public int y { get { return _y; } set { _y = value; } }
+        public string brick { get { return _brick; } set { _brick = value; } }
 
 
-        }
     }
 }

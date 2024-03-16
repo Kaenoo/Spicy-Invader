@@ -88,17 +88,17 @@ namespace Projet_SpicyInvader
             PlayerShip playerShip = new PlayerShip();
             Invaders badInvaders = new Invaders();
             Missile missile = new Missile(playerShip.PositionX, 33);
-            Brick wall = new Brick();
+            Wall wall = new Wall();
             Score scoreGame = new Score();
-
-            wall.Draw();
+            wall.CreateWallOfBrick();
 
              while (playerShip.Alive() != false)
              {
                 scoreGame.AddPoints();
                 KeyPressChosen(playerShip, missile);
                 Update(playerShip, missile,badInvaders);
-                Draw(playerShip, missile, badInvaders, scoreGame);
+                Draw(playerShip, missile, badInvaders, wall);
+                Collision(playerShip, missile, badInvaders, wall, scoreGame);
                 
                 Thread.Sleep(20);
              }
@@ -117,11 +117,11 @@ namespace Projet_SpicyInvader
 
                 if (Keyboard.IsKeyDown(Key.Space))
                 {
-                    if (m.IsMissile is false)
+                    if (m.missileLaunched is false)
                     {
                         m._x = playerShip.PositionX;
                         m._y = 33;
-                        m.IsMissile = true;
+                        m.missileLaunched = true;
                     }
                 }
             }
@@ -131,21 +131,21 @@ namespace Projet_SpicyInvader
 
                 if (Keyboard.IsKeyDown(Key.Space))
                 {
-                    if (m.IsMissile is false)
+                    if (m.missileLaunched is false)
                     {
                         m._x = playerShip.PositionX;
                         m._y = 33;
-                        m.IsMissile = true;
+                        m.missileLaunched = true;
                     }
                 }
             }
             else if (Keyboard.IsKeyDown(Key.Space))
             {
-                if (m.IsMissile is false)
+                if (m.missileLaunched is false)
                 {
                     m._x = playerShip.PositionX;
                     m._y = 33;
-                    m.IsMissile = true;
+                    m.missileLaunched = true;
                 }
             }                                      
         }
@@ -157,11 +157,11 @@ namespace Projet_SpicyInvader
         /// <param name="m"></param>
         public static void Update(PlayerShip playerShip, Missile m, Invaders enemies)
         {
-            if (m._y == 2)
+            if (m._y == 0)
             {
-                m.IsMissile = false;   
+                m.missileLaunched = false;   
             }
-            else if (m.IsMissile is true)
+            else if (m.missileLaunched is true)
             {
                 m.Shoot();
             }
@@ -174,7 +174,7 @@ namespace Projet_SpicyInvader
                 enemies.X = 5;
                 enemies.Y = 3;
                 enemies.Invadersdie = false;
-                enemies.leftOrRight = false;
+                enemies.goLeftElseRight = false;
             }                    
         }
 
@@ -183,36 +183,64 @@ namespace Projet_SpicyInvader
         /// </summary>
         /// <param name="playerShip"></param>
         /// <param name="m"></param>
-        public static void Draw(PlayerShip playerShip, Missile m, Invaders enemies, Score score)
+        public static void Draw(PlayerShip playerShip, Missile m, Invaders enemies, Wall walls)
         {
             playerShip.Draw();
+            walls.Draw();
             //Si un missile a été lancé, alors ça le dessine
-            if (m.IsMissile == true)
+            if (m.missileLaunched == true)
             {
                 m.DrawMissile();
             }
             enemies.Draw();
 
-            //Supprime l'ennemi s'il est touché par un missile
-            if (m.hitbox().IntersectsWith(enemies.hitbox()))
-            {
-                m.UnDrawMissileActualPosition();
-                enemies.UndrawActualPosition();
-                m._y = 2;
-                m._x = 2;
-                enemies.Invadersdie = true;
-                score.AddPoints();
-                
-            }
+
             //Si l'ennemi est sur la même hauteur que le vaisseau -> PERDU
             if (enemies.Y == 35)
             {
                 Console.SetCursorPosition(15, 15);
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Game Over, appuyer sur un bouton pour revenir au menu.");
+                Console.WriteLine(@"                  _____          __  __ ______    ______      ________ _____  
+                                / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \ 
+                               | |  __   /  \  | \  / | |__    | |  | \ \  / /| |__  | |__) |
+                               | | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  / 
+                               | |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \ 
+                                \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_\");
+                Console.SetCursorPosition(40, 24);
+                Console.WriteLine("Appuyer sur une Enter pour revenir au menu");
+                Console.ResetColor();
+                Console.ReadLine();
+                Console.Clear();
+                Menu();
             }
         }
 
+
+        public static void Collision(PlayerShip playerShip, Missile m, Invaders enemies, Wall walls, Score score)
+        {
+            //Supprime l'ennemi et le missile si les 2 se touchent
+            if (m.hitbox().IntersectsWith(enemies.hitbox()))
+            {
+                m.UnDrawMissileActualPosition();
+                m.missileLaunched = false;
+                enemies.UndrawActualPosition();
+                enemies.Invadersdie = true;
+                score.AddPoints();
+            }
+
+            //Abime une brique du mur si touchée 1 fois, la détruit si touchée 2 fois
+            foreach (Wall w in walls.walls)
+            {
+                for (int j = 0; j < walls.HEIGHTWALL; j++)
+                {
+                    for (int i = 0; i < walls.WIDTHWALL; i++)
+                    {
+                        walls.
+                    }
+                }
+            }
+            
+        }
         /// <summary>
         /// Options du jeu (Son et difficultés)
         /// </summary>

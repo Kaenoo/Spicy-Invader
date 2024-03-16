@@ -13,40 +13,40 @@ namespace Projet_SpicyInvader
         private int _Y = 3;
         private int _X = 5;
         private bool _invadersdie = false;
-        internal bool leftOrRight = false;
+        internal bool goLeftElseRight = false;
 
         public int Y { get { return _Y; } set { _Y = value; } }
         public int X { get { return _X; } set { _X = value; } }
         public bool Invadersdie { get { return _invadersdie; } set { _invadersdie = value; } }
-        
+
         /// <summary>
         /// Déplacement de l'ennemi
         /// </summary>
         public void Update()
         {
-            if (leftOrRight is false)
+            if (goLeftElseRight is false)
             {
                 _X++;
             }
-            else if (leftOrRight is true)
+            else if (goLeftElseRight is true)
             {
                 _X--;
             }
 
             if (_X == 110)
             {
-                Console.SetCursorPosition(109,_Y);
+                Console.SetCursorPosition(109, _Y);
                 Console.Write("     ");
                 _Y++;
-                leftOrRight = true;
+                goLeftElseRight = true;
             }
             else if (_X == 5)
             {
                 Console.SetCursorPosition(6, _Y);
                 Console.Write("     ");
                 _Y++;
-                leftOrRight = false;
-            }         
+                goLeftElseRight = false;
+            }
         }
 
         /// <summary>
@@ -61,39 +61,38 @@ namespace Projet_SpicyInvader
             Undraw();
         }
         /// <summary>
-        /// Supprime l'ennemi dans son ancienne position
+        /// Efface l'ennemi dans son ancienne position
         /// </summary>
         public void Undraw()
         {
-            if (leftOrRight is false)
+            if (goLeftElseRight is false)
             {
                 Console.SetCursorPosition(_X - 4, _Y);
                 Console.Write("    ");
             }
-            else if (leftOrRight is true)
+            else if (goLeftElseRight is true)
             {
                 Console.SetCursorPosition(_X + 5, _Y);
                 Console.Write("    ");
             }           
         }
 
+        /// <summary>
+        /// Efface l'ennemi dans sa position actuelle
+        /// </summary>
         public void UndrawActualPosition()
         {
-            if (leftOrRight is false)
-            {
-                Console.SetCursorPosition(_X, _Y);
-                Console.Write("     ");
-            }
-            else if (leftOrRight is true)
-            {
-                Console.SetCursorPosition(_X , _Y);
-                Console.Write("     ");
-            }
+            Console.SetCursorPosition(_X, _Y);
+            Console.Write("     ");
         }
 
+        /// <summary>
+        /// Hitbox de l'ennemi
+        /// </summary>
+        /// <returns></returns>
         public Rectangle hitbox()
         {
-            return new Rectangle(_X, _Y, 4, 2);
+            return new Rectangle(_X, _Y, 5, 1);
         }
     }
 }

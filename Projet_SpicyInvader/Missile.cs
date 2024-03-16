@@ -17,13 +17,11 @@ namespace Projet_SpicyInvader
     {
         internal int _x;
         internal int _y;
-        private bool _isMissile = false;
+        private bool _missileLaunched = false;
+        private bool _missileEnd = false;
 
-        public bool IsMissile
-        {
-            get { return _isMissile; }
-            set { _isMissile = value; }
-        }
+        public bool missileLaunched{ get { return _missileLaunched; } set { _missileLaunched = value; }}
+        public bool missileEnd{ get { return _missileEnd; } set { _missileEnd = value; }}
 
         public Missile(int XBeginning, int YBeginning)
         {
@@ -34,7 +32,7 @@ namespace Projet_SpicyInvader
         public int Y { get => _y; }
 
         /// <summary>
-        /// Tire les missiles
+        /// Fait avancer le missile
         /// </summary>
         public void Shoot()
         {
@@ -51,18 +49,14 @@ namespace Projet_SpicyInvader
             Console.Write("¦");
             Console.ResetColor();
             UnDrawMissile();
-            if (_y == 2)
+            if (_y == 2 || _missileEnd is true)
             {
-                for (int i = 0; i < 3; i++)
-                {
-                    Console.SetCursorPosition(_x + 2, _y + 2 -i);
-                    Console.Write(" ");
-                }                
+                UnDrawMissileActualPosition();          
             }
         }
 
         /// <summary>
-        /// Efface le missile
+        /// Efface le missile dans sa position précédente
         /// </summary>
         public void UnDrawMissile()
         {                       
@@ -70,6 +64,9 @@ namespace Projet_SpicyInvader
             Console.Write(" ");                                               
         }
 
+        /// <summary>
+        /// Efface le missile dans sa position actuelle
+        /// </summary>
         public void UnDrawMissileActualPosition()
         {
             for (int i = 0; i < 3; i++)
@@ -77,11 +74,17 @@ namespace Projet_SpicyInvader
                 Console.SetCursorPosition(_x + 2, _y + 2 - i);
                 Console.Write(" ");
             }
+            _x = 0;
+            _y = 0;
         }
 
+        /// <summary>
+        /// Hitbox du missile
+        /// </summary>
+        /// <returns></returns>
         public Rectangle hitbox()
         {
-            return new Rectangle(_x, _y, 1, 2);
+            return new Rectangle(_x + 2, _y, 1, 2);
         }
     }
 }
