@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Projet_SpicyInvader
@@ -13,44 +9,45 @@ namespace Projet_SpicyInvader
         private int _y = 28;
         private const int _WIDTHWALL = 15;
         private const int _HEIGHTWALL= 3;
-        private Wall[] _walls = new Wall[4];
-        private string[,] _wall = new string[_WIDTHWALL, _HEIGHTWALL ];
-
+        private const int _NBWALL = 4;
+        private Wall[] _walls = new Wall[_NBWALL];
+        private Brick[,] _brick = new Brick[_WIDTHWALL, _HEIGHTWALL];
+        private bool _isTouched = false;
+                
         public int x { get { return _x; } set { _x = value; } }
         public int y { get { return _y; } set { _y = value; } }
-        public string[,] wall { get { return _wall; } set { _wall = value; } }
         public int WIDTHWALL { get { return _WIDTHWALL; } }
         public int HEIGHTWALL { get { return _HEIGHTWALL; } }
-        public Wall[] walls { get { return _walls; } }
+        public Wall[] walls { get { return _walls; } set { _walls = value; } }
+        public Brick[,] brick {  get { return _brick; } }
 
         /// <summary>
         /// Crée les murs
         /// </summary>
         public void CreateWallOfBrick()
         {
-            foreach (Wall w in _walls)
+            for (int k = 0; k < _walls.Length ; k++)
             {
-                Brick[,] brick = new Brick[_WIDTHWALL, _HEIGHTWALL];
+                _walls[k] = new Wall();
                 for (int j = 0; j < _HEIGHTWALL; j++)
                 {
                     for (int i = 0; i < _WIDTHWALL; i++)
                     {
-                        brick[i, j] = new Brick();
-                        brick[i, j].x = _x + i;
-                        brick[i, j].y = _y + i;
-                        _wall[i, j] = brick[i, j].brick;
+                        walls[k]._brick[i, j] = new Brick();
+                        walls[k]._brick[i, j].x = _x + i;
+                        walls[k]._brick[i, j].y = _y + i;
                         Console.SetCursorPosition(_x + i, _y + j);
-                        Console.WriteLine(_wall[i, j]);
+                        Console.WriteLine(walls[k]._brick[i, j].brick);
                     }
                 }
-                _x += 25;
-            }    
+                _x += 25;                
+            }   
             _x = 10;
             _y = 28;
         }
 
         /// <summary>
-        /// Dessine les murs PROBALEMENT SUPPRIMABLE
+        /// Dessine les murs
         /// </summary>
         public void Draw()
         {
@@ -61,7 +58,7 @@ namespace Projet_SpicyInvader
                     for (int i = 0; i < _WIDTHWALL; i++)
                     {
                         Console.SetCursorPosition(_x + i, _y + j);
-                        Console.WriteLine(_wall[i, j]);
+                        Console.WriteLine(w._brick[i, j].brick);
                     }
                 }
                 _x += 25;
@@ -76,18 +73,41 @@ namespace Projet_SpicyInvader
         /// <param name="a"></param>
         /// <param name="b"></param>
         /// <param name="Wall1"></param>
-        public void Touch(int a, int b, Brick bricks) 
+        public bool Touch(int a, int b) 
         {
-            if (bricks.brick == "¬" || bricks.brick == "-")
+            switch (_brick[a, b].brick)
             {
-                for (int j = 0; j < _HEIGHTWALL; j++)
-                {
-                    for (int i = 0; i < _WIDTHWALL; i++)
-                    {
-                        bricks.brick = "-";
-                    }
-                }
+                case "¬":
+                    _brick[a, b].brick = "-";
+                    _isTouched = true;
+                    return _isTouched;
+                case "-":
+                    _brick[a, b].brick = " ";
+                    _isTouched = true;
+                    return _isTouched;
+                default: 
+                    _isTouched = false;
+                    return _isTouched;
             }
+
+
+         /*   if (_brick[a, b].brick == "¬")
+            {
+                _brick[a, b].brick = "-";
+                _isTouched = true;
+            }
+            else if (_brick[a, b].brick == "-")
+            {
+                _brick[a, b].brick = " ";
+                _isTouched = true;
+                
+            }
+            else
+            {
+                _isTouched = false;
+            }
+            
+            return _isTouched;*/
         }
     }
 }

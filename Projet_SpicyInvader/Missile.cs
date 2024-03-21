@@ -76,6 +76,7 @@ namespace Projet_SpicyInvader
             }
             _x = 0;
             _y = 0;
+            missileLaunched = false;
         }
 
         /// <summary>

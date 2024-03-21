@@ -90,6 +90,8 @@ namespace Projet_SpicyInvader
             Missile missile = new Missile(playerShip.PositionX, 33);
             Wall wall = new Wall();
             Score scoreGame = new Score();
+
+            badInvaders.CreateInvaders();
             wall.CreateWallOfBrick();
 
              while (playerShip.Alive() != false)
@@ -171,10 +173,10 @@ namespace Projet_SpicyInvader
             }
             else if(enemies.Invadersdie == true)
             {
-                enemies.X = 5;
+                /*enemies.X = 5;
                 enemies.Y = 3;
                 enemies.Invadersdie = false;
-                enemies.goLeftElseRight = false;
+                enemies.goLeftElseRight = false;*/
             }                    
         }
 
@@ -215,32 +217,49 @@ namespace Projet_SpicyInvader
             }
         }
 
-
-        public static void Collision(PlayerShip playerShip, Missile m, Invaders enemies, Wall walls, Score score)
+        /// <summary>
+        /// Gère les collisions de toutes les classes
+        /// </summary>
+        /// <param name="playerShip"></param>
+        /// <param name="m"></param>
+        /// <param name="enemies"></param>
+        /// <param name="wall"></param>
+        /// <param name="score"></param>
+        public static void Collision(PlayerShip playerShip, Missile m, Invaders enemies, Wall wall, Score score)
         {
-            //Supprime l'ennemi et le missile si les 2 se touchent
-            if (m.hitbox().IntersectsWith(enemies.hitbox()))
+            for (int j = 0; j < enemies.NUMBERINVADERS; j++)
             {
-                m.UnDrawMissileActualPosition();
-                m.missileLaunched = false;
-                enemies.UndrawActualPosition();
-                enemies.Invadersdie = true;
-                score.AddPoints();
-            }
-
-            //Abime une brique du mur si touchée 1 fois, la détruit si touchée 2 fois
-            foreach (Wall w in walls.walls)
-            {
-                for (int j = 0; j < walls.HEIGHTWALL; j++)
+                //Supprime l'ennemi et le missile si les 2 se touchent
+                if (m.hitbox().IntersectsWith(enemies.invaders[j].hitbox()))
                 {
-                    for (int i = 0; i < walls.WIDTHWALL; i++)
-                    {
-                        walls.
-                    }
+                    m.UnDrawMissileActualPosition();
+                    enemies.invaders.RemoveAt(j);
+                    enemies.NUMBERINVADERS--;
+                    score.AddPoints();
+                    break;
                 }
             }
-            
+
+            //Abime une brique du mur si touchée 1 fois, la détruit si touchée 2 fois + supprime le missile lorsqu'il touche une brique
+            foreach (Wall w in wall.walls)
+            {
+                for (int j = wall.HEIGHTWALL -1; j >= 0; j--)
+                {
+                    for (int i = 0; i < wall.WIDTHWALL; i++)
+                    {
+                        if (w.brick[i, j].x == m._x + 2 && w.brick[i, j].y == m.Y)
+                        {
+                            w.Touch(i, j);
+                            if (w.Touch(i, j) is true)
+                            {
+                                m.UnDrawMissileActualPosition();
+                            }
+                        }
+                    }
+                }
+            }            
         }
+
         /// <summary>
         /// Options du jeu (Son et difficultés)
         /// </summary>

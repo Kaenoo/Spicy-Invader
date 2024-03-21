@@ -1,8 +1,6 @@
 D:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\bin\Debug\Projet_SpicyInvader.exe.config
 D:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\bin\Debug\Projet_SpicyInvader.exe
 D:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\bin\Debug\Projet_SpicyInvader.pdb
-D:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.AssemblyReference.cache
-D:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.SuggestedBindingRedirects.cache
 D:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.CoreCompileInputs.cache
 D:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.exe
 D:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.pdb
@@ -10,7 +8,6 @@ E:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\bin\Debug\Projet_SpicyInva
 E:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\bin\Debug\Projet_SpicyInvader.exe
 E:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\bin\Debug\Projet_SpicyInvader.pdb
 E:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.AssemblyReference.cache
-E:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.SuggestedBindingRedirects.cache
 E:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.CoreCompileInputs.cache
 E:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.exe
 E:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.pdb
@@ -22,3 +19,5 @@ F:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInva
 F:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.CoreCompileInputs.cache
 F:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.exe
 F:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.pdb
+D:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.AssemblyReference.cache
+D:\Module 226\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.SuggestedBindingRedirects.cache
