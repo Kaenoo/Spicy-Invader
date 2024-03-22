@@ -21,7 +21,8 @@ namespace Projet_SpicyInvader
     /// </summary>
     internal class PlayerShip
     {
-        int _positionSpaceshipX = 120/2;
+        private int _positionSpaceshipX = 120/2;
+        private const int _POSITIONSPACESHIPY = 35;
         bool _clearAThing = false;
         private bool _alive = true;
 
@@ -67,7 +68,7 @@ namespace Projet_SpicyInvader
         public void Draw()
         {
             ClearSpaceship();
-            Console.SetCursorPosition(_positionSpaceshipX, 35);
+            Console.SetCursorPosition(_positionSpaceshipX, _POSITIONSPACESHIPY);
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("('-')");
             Console.ResetColor();
@@ -109,6 +110,10 @@ namespace Projet_SpicyInvader
             }
         }
 
+        public Rectangle hitbox()
+        {
+            return new Rectangle(_positionSpaceshipX, _POSITIONSPACESHIPY, 5, 1);
+        }
     }       
     
 }

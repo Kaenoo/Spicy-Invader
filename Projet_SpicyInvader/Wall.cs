@@ -26,7 +26,7 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void CreateWallOfBrick()
         {
-            for (int k = 0; k < _walls.Length ; k++)
+            for (int k = 0; k < _NBWALL ; k++)
             {
                 _walls[k] = new Wall();
                 for (int j = 0; j < _HEIGHTWALL; j++)

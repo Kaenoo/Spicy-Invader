@@ -10,6 +10,7 @@ namespace Projet_SpicyInvader
 {
     internal class Invaders
     {        
+        private int _indicator = 0;
         private int _y = 3;
         private int _x = 5;
         private bool _invadersdie = false;
@@ -28,32 +29,46 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void Update()
         {
-            foreach (Invaders enemies in _invaders)
+            _indicator += 15;
+            if (_indicator % 10 == 0)
             {
-                if (goLeftElseRight is false)
+                foreach (Invaders enemies in _invaders)
                 {
-                    enemies._x++;
-                }
-                else if (goLeftElseRight is true)
-                {
-                    enemies._x--;
-                }
+                    if (goLeftElseRight is false)
+                    {
+                        enemies._x++;
+                    }
+                    else if (goLeftElseRight is true)
+                    {
+                        enemies._x--;
+                    }
 
-                if (enemies._x == 110)
-                {
-                    Console.SetCursorPosition(110, _y);
-                    UndrawActualPosition();
-                    foreach (Invaders enemiess in _invaders){ enemiess._y++;}
-                    goLeftElseRight = true;
+                    if (enemies._x == 110)
+                    {
+                        Console.SetCursorPosition(110, enemies._y);
+                        UndrawActualPosition();
+                        foreach (Invaders enemiess in _invaders)
+                        {
+                            enemiess._y++;
+                            Console.SetCursorPosition(enemiess._x, enemiess._y - 1);
+                            Console.WriteLine("     ");
+                        }
+                        goLeftElseRight = true;
+                    }
+                    else if (enemies._x == 5)
+                    {
+                        Console.SetCursorPosition(5, enemies._y);
+                        UndrawActualPosition();
+                        foreach (Invaders enemiess in _invaders)
+                        {
+                            enemiess._y++;
+                            Console.SetCursorPosition(enemiess._x, enemiess._y - 1);
+                            Console.WriteLine("      ");
+                        }
+                        goLeftElseRight = false;
+                    }
                 }
-                else if (enemies._x == 5)
-                {
-                    Console.SetCursorPosition(5, _y);
-                    UndrawActualPosition();
-                    foreach (Invaders enemiess in _invaders) { enemiess._y++; }
-                    goLeftElseRight = false;
-                }
-            }            
+            }
         }
 
         /// <summary>
@@ -61,7 +76,10 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void CreateInvaders()
         {
-            for (int j = 0; j < 15; j++)
+            _y = 3;
+            _x = 5;
+
+            for (int j = 0; j < _NUMBERINVADERS; j++)
             {
                 if (j == 5 || j == 10)
                 {
@@ -106,7 +124,7 @@ namespace Projet_SpicyInvader
                 }
                 else if (goLeftElseRight is true)
                 {
-                    Console.SetCursorPosition(enemies._x, enemies._y);
+                    Console.SetCursorPosition(enemies._x +5, enemies._y);
                     Console.Write(" ");
                 }
             }
@@ -126,8 +144,8 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void InvaderDie(List<Invaders> Enemies, int index)
         {
+            //invaders[index].UndrawActualPosition();
             Enemies.RemoveAt(index);
-            invaders[index].UndrawActualPosition();
         }
 
         /// <summary>

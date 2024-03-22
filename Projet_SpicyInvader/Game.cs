@@ -83,8 +83,8 @@ namespace Projet_SpicyInvader
         /// Lance le jeu
         /// </summary>
         public static void GameSP()
-        {       
-           
+        {           
+            //Instanciation des classes
             PlayerShip playerShip = new PlayerShip();
             Invaders badInvaders = new Invaders();
             Missile missile = new Missile(playerShip.PositionX, 33);
@@ -94,14 +94,14 @@ namespace Projet_SpicyInvader
             badInvaders.CreateInvaders();
             wall.CreateWallOfBrick();
 
+            //boucle du jeu continue tant que le joueur est en vie
              while (playerShip.Alive() != false)
              {
                 scoreGame.AddPoints();
                 KeyPressChosen(playerShip, missile);
                 Update(playerShip, missile,badInvaders);
                 Draw(playerShip, missile, badInvaders, wall);
-                Collision(playerShip, missile, badInvaders, wall, scoreGame);
-                
+                Collision(playerShip, missile, badInvaders, wall, scoreGame);                
                 Thread.Sleep(20);
              }
         }
@@ -113,7 +113,7 @@ namespace Projet_SpicyInvader
         /// <param name="m"></param>
         public static void KeyPressChosen(PlayerShip playerShip, Missile m)
         {
-            if (Keyboard.IsKeyDown(Key.Left))
+            if (Keyboard.IsKeyDown(Key.Left)) //Si l'user appuie sur la fleche de gauche, vaisseau va à gauche
             {
                 playerShip.Move(false);
 
@@ -127,7 +127,7 @@ namespace Projet_SpicyInvader
                     }
                 }
             }
-            else if(Keyboard.IsKeyDown(Key.Right))
+            else if(Keyboard.IsKeyDown(Key.Right)) //Si l'user appuie sur la fleche de droite, vaisseau va à droite
             {
                 playerShip.Move(true);
 
@@ -141,7 +141,7 @@ namespace Projet_SpicyInvader
                     }
                 }
             }
-            else if (Keyboard.IsKeyDown(Key.Space))
+            else if (Keyboard.IsKeyDown(Key.Space)) //Si l'user appuie sur Espace, lance un missile
             {
                 if (m.missileLaunched is false)
                 {
@@ -196,25 +196,27 @@ namespace Projet_SpicyInvader
             }
             enemies.Draw();
 
-
-            //Si l'ennemi est sur la même hauteur que le vaisseau -> PERDU
-            if (enemies.Y == 35)
+            foreach (Invaders enemy in enemies.invaders)
             {
-                Console.SetCursorPosition(15, 15);
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(@"                  _____          __  __ ______    ______      ________ _____  
+                if (enemy.Y == 35)
+                {
+                    Console.SetCursorPosition(10, 15);
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine(@"                       _____          __  __ ______    ______      ________ _____  
                                 / ____|   /\   |  \/  |  ____|  / __ \ \    / /  ____|  __ \ 
                                | |  __   /  \  | \  / | |__    | |  | \ \  / /| |__  | |__) |
                                | | |_ | / /\ \ | |\/| |  __|   | |  | |\ \/ / |  __| |  _  / 
                                | |__| |/ ____ \| |  | | |____  | |__| | \  /  | |____| | \ \ 
                                 \_____/_/    \_\_|  |_|______|  \____/   \/   |______|_|  \_\");
-                Console.SetCursorPosition(40, 24);
-                Console.WriteLine("Appuyer sur une Enter pour revenir au menu");
-                Console.ResetColor();
-                Console.ReadLine();
-                Console.Clear();
-                Menu();
+                    Console.SetCursorPosition(40, 24);
+                    Console.WriteLine("Appuyer sur une Enter pour revenir au menu");
+                    Console.ResetColor();
+                    Console.ReadLine();
+                    Console.Clear();
+                    Menu();
+                }
             }
+            //Si l'ennemi est sur la même hauteur que le vaisseau -> PERDU
         }
 
         /// <summary>
@@ -233,9 +235,15 @@ namespace Projet_SpicyInvader
                 if (m.hitbox().IntersectsWith(enemies.invaders[j].hitbox()))
                 {
                     m.UnDrawMissileActualPosition();
+                    enemies.invaders[j].UndrawActualPosition();
                     enemies.invaders.RemoveAt(j);
                     enemies.NUMBERINVADERS--;
-                    score.AddPoints();
+                    if (enemies.invaders.Count() == 0)
+                    {
+                        enemies.NUMBERINVADERS = 15;
+                        enemies.CreateInvaders();
+                    }
+                    score.score += 20;
                     break;
                 }
             }
@@ -247,13 +255,16 @@ namespace Projet_SpicyInvader
                 {
                     for (int i = 0; i < wall.WIDTHWALL; i++)
                     {
-                        if (w.brick[i, j].x == m._x + 2 && w.brick[i, j].y == m.Y)
+                        if (w.brick[i, j].x == m.X + 2 && w.brick[i, j].y == m.Y)
                         {
-                            w.Touch(i, j);
-                            if (w.Touch(i, j) is true)
+                            bool collision = false;
+                            collision = w.Touch(i, j);
+
+                            if (collision is true)
                             {
                                 m.UnDrawMissileActualPosition();
                             }
+                            break;
                         }
                     }
                 }

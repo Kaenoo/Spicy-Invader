@@ -28,8 +28,8 @@ namespace Projet_SpicyInvader
             _x = XBeginning;
             _y = YBeginning;
         }
-        public int X { get => _x; }
-        public int Y { get => _y; }
+        public int X { get { return _x; } set { _x = value; }}
+        public int Y { get { return _y; } set { _y = value; } }
 
         /// <summary>
         /// Fait avancer le missile

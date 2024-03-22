@@ -8,10 +8,11 @@ namespace Projet_SpicyInvader
 {
     internal class Score
     {
+        private int _indicator = 0;
         private int _score = 0;
         private int _highScore = 0;
 
-        public int score { get { return _score; } }
+        public int score { get { return _score; } set { _score = value; } }
         public int highScore { get { return _highScore; } }
 
         public Score()
@@ -24,13 +25,19 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void AddPoints()
         {
-            _score += 10;
-            if (_score > _highScore)
+            _indicator += 10;
+            if (_indicator % 200 == 0)
             {
-                _highScore = _score;
+                _score += 10;
+
+                if (_score > _highScore)
+                {
+                    _highScore = _score;
+                }
+
             }
-            Console.SetCursorPosition(0, 0);
-            Console.WriteLine($"Score : {_score}    High-Score : {_highScore} ");
+                Console.SetCursorPosition(0, 0);
+                Console.WriteLine($"Score : {_score}    High-Score : {_highScore} ");
         }
     }
 }
