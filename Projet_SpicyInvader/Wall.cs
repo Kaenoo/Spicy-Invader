@@ -8,7 +8,7 @@ namespace Projet_SpicyInvader
         private int _x = 10;
         private int _y = 28;
         private const int _WIDTHWALL = 15;
-        private const int _HEIGHTWALL= 3;
+        private const int _HEIGHTWALL= 2;
         private const int _NBWALL = 4;
         private Wall[] _walls = new Wall[_NBWALL];
         private Brick[,] _brick = new Brick[_WIDTHWALL, _HEIGHTWALL];
@@ -22,7 +22,7 @@ namespace Projet_SpicyInvader
         public Brick[,] brick {  get { return _brick; } }
 
         /// <summary>
-        /// Crée les murs
+        /// Créé les murs
         /// </summary>
         public void CreateWallOfBrick()
         {
@@ -33,11 +33,11 @@ namespace Projet_SpicyInvader
                 {
                     for (int i = 0; i < _WIDTHWALL; i++)
                     {
-                        walls[k]._brick[i, j] = new Brick();
-                        walls[k]._brick[i, j].x = _x + i;
-                        walls[k]._brick[i, j].y = _y + i;
+                        _walls[k]._brick[i, j] = new Brick();
+                        _walls[k]._brick[i, j].x = _x + i;
+                        _walls[k]._brick[i, j].y = _y + j;
                         Console.SetCursorPosition(_x + i, _y + j);
-                        Console.WriteLine(walls[k]._brick[i, j].brick);
+                        Console.WriteLine(_walls[k]._brick[i, j].brick);
                     }
                 }
                 _x += 25;                
@@ -89,25 +89,45 @@ namespace Projet_SpicyInvader
                     _isTouched = false;
                     return _isTouched;
             }
+        }
 
+        public void Collision(Missile m, Missile ME)
+        {
+            //Abime une brique du mur si touchée 1 fois, la détruit si touchée 2 fois + supprime le missile lorsqu'il touche une brique
+            foreach (Wall w in _walls)
+            {
+                for (int j = _HEIGHTWALL - 1; j >= 0; j--)
+                {
+                    for (int i = 0; i < _WIDTHWALL; i++)
+                    {
+                        //Si un missile de l'user touche une brique
+                        if (w.brick[i, j].x == m.X + 2 && w.brick[i, j].y == m.Y)
+                        {
+                            bool collision = false;
+                            collision = w.Touch(i, j);
 
-         /*   if (_brick[a, b].brick == "¬")
-            {
-                _brick[a, b].brick = "-";
-                _isTouched = true;
+                            if (collision is true)
+                            {
+                                m.UnDrawMissileActualPosition();
+                            }
+                            break;
+                        }
+
+                        //Si un missile de l'ennemi touche une brique
+                        if (w.brick[i, j].x == ME.X + 2 && w.brick[i, j].y == ME.Y)
+                        {
+                            bool collision = false;
+                            collision = w.Touch(i, j);
+
+                            if (collision is true)
+                            {
+                                ME.UnDrawMissileActualPosition();
+                            }
+                            break;
+                        }
+                    }
+                }
             }
-            else if (_brick[a, b].brick == "-")
-            {
-                _brick[a, b].brick = " ";
-                _isTouched = true;
-                
-            }
-            else
-            {
-                _isTouched = false;
-            }
-            
-            return _isTouched;*/
         }
     }
 }

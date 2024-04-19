@@ -13,7 +13,6 @@ namespace Projet_SpicyInvader
         private int _indicator = 0;
         private int _y = 3;
         private int _x = 5;
-        private bool _invadersdie = false;
         internal bool goLeftElseRight = false;
         private int _NUMBERINVADERS = 15;
         List<Invaders> _invaders = new List<Invaders>();
@@ -21,7 +20,6 @@ namespace Projet_SpicyInvader
         public int Y { get { return _y; } set { _y = value; } }
         public int X { get { return _x; } set { _x = value; } }
         public int NUMBERINVADERS { get { return _NUMBERINVADERS; } set { _NUMBERINVADERS = value;} }
-        public bool Invadersdie { get { return _invadersdie; } set { _invadersdie = value; } }
         public List<Invaders> invaders { get { return _invaders; } set { _invaders = value; } }
 
         /// <summary>
@@ -144,8 +142,39 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void InvaderDie(List<Invaders> Enemies, int index)
         {
-            //invaders[index].UndrawActualPosition();
             Enemies.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// Gère les collisions de l'ennnemi
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="score"></param>
+        public void Collision(Missile m, Score score, PlayerShip playerShip)
+        {
+            for (int j = 0; j < _NUMBERINVADERS; j++)
+            {
+                //Supprime l'ennemi et le missile si les 2 se touchent
+                if (m.hitbox().IntersectsWith(_invaders[j].hitbox()))
+                {
+                    m.UnDrawMissileActualPosition();
+                    _invaders[j].UndrawActualPosition();
+                    _invaders.RemoveAt(j);
+                    _NUMBERINVADERS--;
+                    if (_invaders.Count() == 0)
+                    {
+                        _NUMBERINVADERS = 15;
+                        CreateInvaders();
+                    }
+                    score.score += 20;
+                    break;
+                }
+            }
+            //Si l'ennemi est sur la même hauteur que le vaisseau -> PERDU
+            if (_invaders[_NUMBERINVADERS - 1].Y == 35)
+            {
+                Game.GameOver(playerShip);
+            }
         }
 
         /// <summary>

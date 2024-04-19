@@ -14,7 +14,5 @@ namespace Projet_SpicyInvader
         public int x { get { return _x; } set { _x = value; } }
         public int y { get { return _y; } set { _y = value; } }
         public string brick { get { return _brick; } set { _brick = value; } }
-
-
     }
 }
