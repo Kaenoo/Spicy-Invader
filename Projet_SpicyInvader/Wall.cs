@@ -1,5 +1,9 @@
-﻿using System;
-using System.Drawing;
+﻿///ETML
+///Auteur : Kaeno Eyer
+///Date : 19.04.2024
+///Description : Classe contenant les propriétés du mur
+///
+using System;
 
 namespace Projet_SpicyInvader
 {
@@ -13,7 +17,7 @@ namespace Projet_SpicyInvader
         private Wall[] _walls = new Wall[_NBWALL];
         private Brick[,] _brick = new Brick[_WIDTHWALL, _HEIGHTWALL];
         private bool _isTouched = false;
-                
+
         public int x { get { return _x; } set { _x = value; } }
         public int y { get { return _y; } set { _y = value; } }
         public int WIDTHWALL { get { return _WIDTHWALL; } }
@@ -77,11 +81,11 @@ namespace Projet_SpicyInvader
         {
             switch (_brick[a, b].brick)
             {
-                case "¬":
-                    _brick[a, b].brick = "-";
+                case "█":
+                    _brick[a, b].brick = "▒";
                     _isTouched = true;
                     return _isTouched;
-                case "-":
+                case "▒":
                     _brick[a, b].brick = " ";
                     _isTouched = true;
                     return _isTouched;
@@ -91,6 +95,11 @@ namespace Projet_SpicyInvader
             }
         }
 
+        /// <summary>
+        /// Gère la collision entre les murs et les missiles
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="ME"></param>
         public void Collision(Missile m, Missile ME)
         {
             //Abime une brique du mur si touchée 1 fois, la détruit si touchée 2 fois + supprime le missile lorsqu'il touche une brique

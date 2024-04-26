@@ -11,14 +11,8 @@ namespace Projet_SpicyInvader
         private int _indicator = 0;
         private int _score = 0;
         private int _highScore = 0;
-
         public int score { get { return _score; } set { _score = value; } }
         public int highScore { get { return _highScore; } }
-
-        public Score()
-        {
-
-        }
 
         /// <summary>
         /// Ajoute des points au score
@@ -34,7 +28,6 @@ namespace Projet_SpicyInvader
                 {
                     _highScore = _score;
                 }
-
             }
                 Console.SetCursorPosition(0, 0);
                 Console.WriteLine($"Score : {_score}    High-Score : {_highScore} ");

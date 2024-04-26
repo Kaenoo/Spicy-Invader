@@ -1,39 +1,26 @@
 ﻿///ETML
 ///Auteur : Kaeno Eyer
 ///Date : 18.01.2024
-///Description : Contient les mécanismes fondamentaux du jeu.
+///Description : Contient les mécanismes fondamentaux du jeu
 ///
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Timers;
-using System.Drawing;
-
 
 namespace Projet_SpicyInvader
 {
     internal class Game
     {        
-       
-        public Game()
-        {
-
-        }
         /// <summary>
         /// Lancement du programme
         /// </summary>
         /// <param name="args"></param>
         [STAThread]
-        static void Main(string[] args)
+        static void Main()
         {     
             //initialisation des dimensions de la fenêtre de la console
             Console.WindowWidth = 120;
             Console.WindowHeight = 40;
-
             Console.CursorVisible = false;
             //Lancement du menu du jeu
             GameMenu gameMenu = new GameMenu();
@@ -43,7 +30,7 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Lance le jeu
         /// </summary>
-        public static int GameSP()
+        public static int GameSP(bool difficulty)
         {               
             //Instanciation des classes
             PlayerShip playerShip = new PlayerShip();
@@ -62,7 +49,7 @@ namespace Projet_SpicyInvader
                 scoreGame.AddPoints();
                 playerShip.ShowLife();
                 KeyPressChosen(playerShip, missile);
-                Update(playerShip, missile,badInvaders, missileEnemies);
+                Update(playerShip, missile,badInvaders, missileEnemies, difficulty);
                 Draw(playerShip, missile, badInvaders, wall, missileEnemies);
                 Collision(playerShip, missile, badInvaders, wall, missileEnemies, scoreGame);                
                 Thread.Sleep(10);
@@ -106,11 +93,11 @@ namespace Projet_SpicyInvader
         /// </summary>
         /// <param name="playerShip"></param>
         /// <param name="m"></param>
-        public static void Update(PlayerShip playerShip, Missile m, Invaders enemies, Missile ME)
+        public static void Update(PlayerShip playerShip, Missile m, Invaders enemies, Missile ME, bool difficulty)
         {
             enemies.Update();
             m.Update();
-            ME.UpdateEnemies(enemies);            
+            ME.UpdateEnemies(enemies, difficulty);            
         }
 
         /// <summary>

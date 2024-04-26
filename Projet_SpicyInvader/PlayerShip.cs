@@ -1,7 +1,7 @@
 ﻿///ETML
 ///Auteur : Kaeno Eyer
 ///Date : 18.01.2024
-///Description : Contient les objets du jeu
+///Description : Contient les propriétés du vaisseau
 ///
 using System;
 using System.Collections.Generic;
@@ -15,7 +15,6 @@ using System.Drawing;
 
 namespace Projet_SpicyInvader
 {
-            
     /// <summary>
     /// Classe vaisseau
     /// </summary>
@@ -23,7 +22,7 @@ namespace Projet_SpicyInvader
     {
         private int _positionSpaceshipX = 120/2;
         private const int _POSITIONSPACESHIPY = 35;
-        bool _clearAThing = false;
+        private bool _isAllLeft = false;
         private bool _alive = true;
         private int _nbLife = 3;
 
@@ -52,7 +51,7 @@ namespace Projet_SpicyInvader
                 if (_positionSpaceshipX > 5)
                 {
                     _positionSpaceshipX--;
-                    _clearAThing = true;
+                    _isAllLeft = true;
                 }
             }
             else if (boolchoice == true)
@@ -60,7 +59,7 @@ namespace Projet_SpicyInvader
                 if (_positionSpaceshipX < 110)
                 {
                     _positionSpaceshipX++;
-                    _clearAThing = false;
+                    _isAllLeft = false;
                 }
             }        
         }
@@ -84,7 +83,7 @@ namespace Projet_SpicyInvader
         {
             for (int i = 0; i < 5; i++)
             {
-                if (_clearAThing == true)
+                if (_isAllLeft == true)
                 {
                     if (_positionSpaceshipX == 6)
                     {
@@ -112,6 +111,9 @@ namespace Projet_SpicyInvader
             }
         }
 
+        /// <summary>
+        /// Supprime la position actuelle du vaisseau lorsqu'il est touché
+        /// </summary>
         public void ClearSpaceShipActualPosition()
         {
             for (int i = 0; i < 5; i++)
@@ -130,11 +132,13 @@ namespace Projet_SpicyInvader
             return new Rectangle(_positionSpaceshipX, _POSITIONSPACESHIPY, 5, 1);
         }
 
+        /// <summary>
+        /// Affiche la vie du vaisseau
+        /// </summary>
         public void ShowLife()
         {
             Console.SetCursorPosition(110, 38);
             Console.WriteLine($"Life : {nbLife}");
         }
-
     }    
 }

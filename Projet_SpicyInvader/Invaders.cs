@@ -1,9 +1,11 @@
-﻿using System;
+﻿///ETML
+///Auteur : Kaeno Eyer
+///Date : 19.04.2024
+///Description : Classe contenant les propriétés de l'ennemi
+///
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Threading;
 using System.Drawing;
 
 namespace Projet_SpicyInvader
@@ -13,6 +15,8 @@ namespace Projet_SpicyInvader
         private int _indicator = 0;
         private int _y = 3;
         private int _x = 5;
+        private int _borderLimitLeft = 5;
+        private int _borderLimitRight = 110;
         internal bool goLeftElseRight = false;
         private int _NUMBERINVADERS = 15;
         List<Invaders> _invaders = new List<Invaders>();
@@ -41,9 +45,9 @@ namespace Projet_SpicyInvader
                         enemies._x--;
                     }
 
-                    if (enemies._x == 110)
+                    if (enemies._x == _borderLimitRight)
                     {
-                        Console.SetCursorPosition(110, enemies._y);
+                        Console.SetCursorPosition(_borderLimitRight, enemies._y);
                         UndrawActualPosition();
                         foreach (Invaders enemiess in _invaders)
                         {
@@ -53,9 +57,9 @@ namespace Projet_SpicyInvader
                         }
                         goLeftElseRight = true;
                     }
-                    else if (enemies._x == 5)
+                    else if (enemies._x == _borderLimitLeft)
                     {
-                        Console.SetCursorPosition(5, enemies._y);
+                        Console.SetCursorPosition(_borderLimitLeft, enemies._y);
                         UndrawActualPosition();
                         foreach (Invaders enemiess in _invaders)
                         {
@@ -105,7 +109,6 @@ namespace Projet_SpicyInvader
                 Console.Write("´-_-`");
                 Console.ResetColor();
                 Undraw();
-
             }
         }
         /// <summary>
@@ -161,6 +164,8 @@ namespace Projet_SpicyInvader
                     _invaders[j].UndrawActualPosition();
                     _invaders.RemoveAt(j);
                     _NUMBERINVADERS--;
+
+                    //Si le groupe d'ennemi est tué, un autre réapparait
                     if (_invaders.Count() == 0)
                     {
                         _NUMBERINVADERS = 15;

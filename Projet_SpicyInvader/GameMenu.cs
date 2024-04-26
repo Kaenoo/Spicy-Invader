@@ -1,14 +1,20 @@
-﻿using System;
+﻿///ETML
+///Auteur : Kaeno Eyer
+///Date : 19.04.2024
+///Description : Contient les méthodes du menu du jeu
+///
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 
 namespace Projet_SpicyInvader
 {
     internal class GameMenu
     {
+        bool _difficultyHard = false;
+        List<string> dataScore = new List<string>();
+        public bool difficultyHard { get { return _difficultyHard; } }
+
         /// <summary>
         /// Menu de démarrage
         /// </summary>
@@ -18,7 +24,6 @@ namespace Projet_SpicyInvader
             string choiceOfMenu;
             string namePlayer;
             int finalScore = 0;
-            List<string> dataScore = new List<string>();
 
             do
             {
@@ -32,11 +37,17 @@ namespace Projet_SpicyInvader
                     gamePlayed = false;
                     Console.Clear();
                 }
-
-                Console.WriteLine("                 **********************************************************************************");
-                Console.WriteLine("                                            Bienvenue sur Space Invaders");
-                Console.WriteLine("                 **********************************************************************************\n\n");
-                Console.WriteLine("                 1. Jouer\n                 2. Options\n                 3. A propos\n                 4. Score\n                 5. Quitter\n\n");
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                            Console.WriteLine(@"
+              _________                           .___                         .___                   
+             /   _____/__________    ____  ____   |   | _______  _______     __| _/___________  ______
+             \_____  \\____ \__  \ _/ ___\/ __ \  |   |/    \  \/ /\__  \   / __ |/ __ \_  __ \/  ___/
+             /        \  |_> > __ \\  \__\  ___/  |   |   |  \   /  / __ \_/ /_/ \  ___/|  | \/\___ \ 
+            /_______  /   __(____  /\___  >___  > |___|___|  /\_/  (____  /\____ |\___  >__|  /____  >
+                    \/|__|       \/     \/    \/           \/           \/      \/    \/           \/ 
+                                                                                                    ");
+                Console.ResetColor();
+                Console.WriteLine("\n\n                 1. Jouer\n                 2. Options\n                 3. A propos\n                 4. Score\n                 5. Quitter\n\n");
                 Console.Write("                 Mettez le chiffre de l'action que vous souhaitez réaliser : ");
 
                 choiceOfMenu = Console.ReadLine();
@@ -45,7 +56,7 @@ namespace Projet_SpicyInvader
                 switch (choiceOfMenu)
                 {
                     case "1":
-                        finalScore = Game.GameSP();
+                        finalScore = Game.GameSP(_difficultyHard);
                         gamePlayed = true;
                         break;
 
@@ -63,6 +74,7 @@ namespace Projet_SpicyInvader
                         Score(dataScore);
                         break;
                     case "5":
+                        ShowAndErase("Fermeture du jeu...", TimeSpan.FromSeconds(1));
                         Environment.Exit(0);
                         break;
 
@@ -119,12 +131,14 @@ namespace Projet_SpicyInvader
                 if (choiceOfOptions == "1")
                 {
                     Console.Clear();
+                    _difficultyHard = false;
                     ShowAndErase("Niveau facile activé", TimeSpan.FromSeconds(1));
                     Menu();
                 }
                 else if (choiceOfOptions == "2")
                 {
                     Console.Clear();
+                    _difficultyHard = true;
                     ShowAndErase("Niveau difficile activé", TimeSpan.FromSeconds(1));
                     Menu();
                 }
@@ -170,7 +184,7 @@ namespace Projet_SpicyInvader
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Vous n'avez pas inséré les chiffres attendus. Veuillez recommencer.\n\n");
+            Console.WriteLine("Vous n'avez pas inséré les chiffres attendus, veuillez recommencer.\n\n");
             Console.ResetColor();
         }
 

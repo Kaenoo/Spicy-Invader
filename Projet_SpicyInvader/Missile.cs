@@ -1,14 +1,9 @@
 ﻿///ETML
 ///Auteur : Kaeno Eyer
 ///Date : 25.01.2024
-///Description : Classe qui permet à l'user de tirer
+///Description : Classe contenant les propriétés du missile
 ///
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Projet_SpicyInvader
@@ -21,8 +16,8 @@ namespace Projet_SpicyInvader
         private bool _missileEnd = false;
         private bool _isLaunchedByPlayerShip = true;
 
-        public bool missileLaunched{ get { return _missileLaunched; } set { _missileLaunched = value; }}
-        public bool missileEnd{ get { return _missileEnd; } set { _missileEnd = value; }}
+        public bool missileLaunched { get { return _missileLaunched; } set { _missileLaunched = value; } }
+        public bool missileEnd { get { return _missileEnd; } set { _missileEnd = value; } }
         public bool isLaunchedByPlayerShip { get { return _isLaunchedByPlayerShip; } set { _isLaunchedByPlayerShip = value; } }
 
         public Missile(int XBeginning, int YBeginning)
@@ -30,15 +25,16 @@ namespace Projet_SpicyInvader
             _x = XBeginning;
             _y = YBeginning;
         }
-        public int X { get { return _x; } set { _x = value; }}
+        public int X { get { return _x; } set { _x = value; } }
         public int Y { get { return _y; } set { _y = value; } }
 
         /// <summary>
-        /// Lancement du missile
+        /// Lancement du missile du joueur lors de l'appelle de cette méthode
         /// </summary>
         /// <param name="playerShip"></param>
         public void LaunchMissile(PlayerShip playerShip)
         {
+            //S'il n'y a pas de missile lancé en cours, déclenche le lancement
             if (_missileLaunched is false)
             {
                 _x = playerShip.PositionX;
@@ -48,7 +44,7 @@ namespace Projet_SpicyInvader
         }
 
         /// <summary>
-        /// Fait avancer le missile
+        /// Fait avancer le missile du joueur et de l'ennemi
         /// </summary>
         public void Progress()
         {
@@ -74,25 +70,38 @@ namespace Projet_SpicyInvader
             else if (missileLaunched is true)
             {
                 Progress();
-            }           
+            }
         }
 
         /// <summary>
-        /// Met à jour les données du missile ennemies
+        /// Met à jour les données du missile ennemies et gère le niveau de difficulté
         /// </summary>
         /// <param name="Enemies"></param>
-        public void UpdateEnemies(Invaders Enemies)
+        public void UpdateEnemies(Invaders Enemies, bool difficulty)
         {
             Random r = new Random();
-            int random = r.Next(6);
+            int random = 0;
             _isLaunchedByPlayerShip = false;
+
+            //Gère le niveau de difficulté
+            if (difficulty is false)
+            {
+                random = r.Next(6);
+
+            }
+            else if (difficulty is true)
+            {
+                random = r.Next(2);
+                Progress();
+                DrawMissile();
+            }
 
             //Gère l'envoie des missiles ennemies
             if (_missileEnd is true)
             {
                 _missileLaunched = false;
             }
-            if (random == 3 && _missileLaunched is false)
+            if (random == 1 && _missileLaunched is false)
             {
                 _x = Enemies.invaders[Enemies.NUMBERINVADERS - 1].X;
                 _y = Enemies.invaders[Enemies.NUMBERINVADERS - 1].Y;
@@ -143,10 +152,12 @@ namespace Projet_SpicyInvader
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("¦");
                 Console.ResetColor();
-                UnDrawMissile();
-                if (_y == 2 || _y == 38 || _missileEnd is true)
+                UnDrawMissile();//Supprime l'ancienne position
+
+                //Supprime la position actuelle si le missile atteint sa limite
+                if (_y == 2 || _y >= 38 || _missileEnd is true)
                 {
-                    UnDrawMissileActualPosition();          
+                    UnDrawMissileActualPosition();
                 }
             }
         }
@@ -158,13 +169,13 @@ namespace Projet_SpicyInvader
         {
             if (_isLaunchedByPlayerShip is true)
             {
-                Console.SetCursorPosition(_x + 2, _y +2);
+                Console.SetCursorPosition(_x + 2, _y + 2);
             }
             else if (_isLaunchedByPlayerShip is false)
             {
                 Console.SetCursorPosition(_x + 2, _y - 2);
             }
-            Console.Write(" ");                                               
+            Console.Write(" ");
         }
 
         /// <summary>
