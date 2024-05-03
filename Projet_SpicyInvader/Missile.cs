@@ -5,6 +5,9 @@
 ///
 using System;
 using System.Drawing;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleToAttribute("Projet_SpicyInvaderTests")]
 
 namespace Projet_SpicyInvader
 {

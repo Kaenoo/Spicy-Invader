@@ -28,3 +28,10 @@ D:\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_Sp
 D:\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.exe
 D:\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.pdb
 D:\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.AssemblyReference.cache
+D:\C#\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\bin\Debug\Projet_SpicyInvader.exe.config
+D:\C#\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\bin\Debug\Projet_SpicyInvader.exe
+D:\C#\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\bin\Debug\Projet_SpicyInvader.pdb
+D:\C#\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.AssemblyReference.cache
+D:\C#\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.csproj.CoreCompileInputs.cache
+D:\C#\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.exe
+D:\C#\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\obj\Debug\Projet_SpicyInvader.pdb

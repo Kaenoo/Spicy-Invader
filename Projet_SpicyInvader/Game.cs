@@ -10,28 +10,29 @@ using System.Windows.Input;
 namespace Projet_SpicyInvader
 {
     internal class Game
-    {        
+    {
+
         /// <summary>
         /// Lancement du programme
         /// </summary>
         /// <param name="args"></param>
         [STAThread]
         static void Main()
-        {     
+        {
             //initialisation des dimensions de la fenêtre de la console
             Console.WindowWidth = 120;
             Console.WindowHeight = 40;
             Console.CursorVisible = false;
             //Lancement du menu du jeu
             GameMenu gameMenu = new GameMenu();
-            gameMenu.Menu();           
-        }        
-        
+            gameMenu.Menu();
+        }
+
         /// <summary>
         /// Lance le jeu
         /// </summary>
         public static int GameSP(bool difficulty)
-        {               
+        {
             //Instanciation des classes
             PlayerShip playerShip = new PlayerShip();
             Invaders badInvaders = new Invaders();
@@ -44,17 +45,17 @@ namespace Projet_SpicyInvader
             wall.CreateWallOfBrick();
 
             //boucle du jeu continue tant que le joueur est en vie
-             while (playerShip.alive is true)
-             {
+            while (playerShip.alive is true)
+            {
                 scoreGame.AddPoints();
                 playerShip.ShowLife();
                 KeyPressChosen(playerShip, missile);
-                Update(playerShip, missile,badInvaders, missileEnemies, difficulty);
+                Update(playerShip, missile, badInvaders, missileEnemies, difficulty);
                 Draw(playerShip, missile, badInvaders, wall, missileEnemies);
-                Collision(playerShip, missile, badInvaders, wall, missileEnemies, scoreGame);                
+                Collision(playerShip, missile, badInvaders, wall, missileEnemies, scoreGame);
                 Thread.Sleep(10);
-             }
-             return scoreGame.score;
+            }
+            return scoreGame.score;
         }
 
         /// <summary>
@@ -73,7 +74,7 @@ namespace Projet_SpicyInvader
                     m.LaunchMissile(playerShip);
                 }
             }
-            else if(Keyboard.IsKeyDown(Key.Right)) //Si l'user appuie sur la fleche de droite, vaisseau va à droite
+            else if (Keyboard.IsKeyDown(Key.Right)) //Si l'user appuie sur la fleche de droite, vaisseau va à droite
             {
                 playerShip.Move(true);
 
@@ -85,7 +86,7 @@ namespace Projet_SpicyInvader
             else if (Keyboard.IsKeyDown(Key.Space)) //Si l'user appuie sur Espace, lance un missile
             {
                 m.LaunchMissile(playerShip);
-            }                                      
+            }
         }
 
         /// <summary>
@@ -97,7 +98,7 @@ namespace Projet_SpicyInvader
         {
             enemies.Update();
             m.Update();
-            ME.UpdateEnemies(enemies, difficulty);            
+            ME.UpdateEnemies(enemies, difficulty);
         }
 
         /// <summary>
@@ -153,6 +154,6 @@ namespace Projet_SpicyInvader
             Console.ReadLine();
             Console.Clear();
             playerShip.alive = false;
-        }       
+        }
     }
 }

@@ -49,11 +49,19 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameTests.cs" />
+    <Compile Include="InvadersTests.cs" />
+    <Compile Include="MissileTest.cs" />
+    <Compile Include="PlayerShipTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Projet_SpicyInvader\Projet_SpicyInvader.csproj">
+      <Project>{255144e8-d8cd-4fd4-972c-28760ab57163}</Project>
+      <Name>Projet_SpicyInvader</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

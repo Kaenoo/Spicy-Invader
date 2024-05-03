@@ -1,8 +1,10 @@
-﻿using System;
+﻿///ETML
+///Auteur : Kaeno Eyer
+///Date : 18.02.2024
+///Description : Classe qui gère le score et le high-score des joueurs
+///
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Projet_SpicyInvader
 {
