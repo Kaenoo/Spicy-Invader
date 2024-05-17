@@ -21,7 +21,7 @@ namespace Projet_SpicyInvaderTests
             missile.LaunchMissile(playerShip);
 
             // Assert
-            Assert.IsTrue(missile.missileLaunched);
+            Assert.IsTrue(missile.MissileLaunched);
         }
 
         [TestMethod]
@@ -29,7 +29,7 @@ namespace Projet_SpicyInvaderTests
         {
             // Arrange
             Missile missile = new Missile(0, 10);
-            missile.isLaunchedByPlayerShip = true;
+            missile.IsLaunchedByPlayerShip = true;
             int initialY = missile.Y;
 
             // Act
@@ -44,7 +44,7 @@ namespace Projet_SpicyInvaderTests
         {
             // Arrange
             Missile missile = new Missile(0, 10);
-            missile.isLaunchedByPlayerShip = false;
+            missile.IsLaunchedByPlayerShip = false;
             int initialY = missile.Y;
 
             // Act

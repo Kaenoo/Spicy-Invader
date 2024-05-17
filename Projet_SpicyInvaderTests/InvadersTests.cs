@@ -17,7 +17,7 @@ namespace Projet_SpicyInvaderTests
             invaders.CreateInvaders();
 
             // Assert
-            Assert.AreEqual(15, invaders.invaders.Count);
+            Assert.AreEqual(15, invaders.Invaderss.Count);
         }
     }
 }

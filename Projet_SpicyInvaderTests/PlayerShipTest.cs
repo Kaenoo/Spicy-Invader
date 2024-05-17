@@ -50,17 +50,6 @@ namespace Projet_SpicyInvaderTests
             Assert.IsTrue(playerShip.PositionX > initialX);
         }
 
-        [TestMethod]
-        public void TestAlive()
-        {
-            // Arrange
-            PlayerShip playerShip = new PlayerShip();
-
-            // Act
-            bool isAlive = playerShip.Alive();
-
-            // Assert
-            Assert.IsTrue(isAlive); // Le vaisseau devrait être en vie par défaut
-        }
+        
     }
 }

@@ -11,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace Projet_SpicyInvader
 {
-    internal class Missile
+    public class Missile
     {
         internal int _x;
         internal int _y;
@@ -19,9 +19,9 @@ namespace Projet_SpicyInvader
         private bool _missileEnd = false;
         private bool _isLaunchedByPlayerShip = true;
 
-        public bool missileLaunched { get { return _missileLaunched; } set { _missileLaunched = value; } }
-        public bool missileEnd { get { return _missileEnd; } set { _missileEnd = value; } }
-        public bool isLaunchedByPlayerShip { get { return _isLaunchedByPlayerShip; } set { _isLaunchedByPlayerShip = value; } }
+        public bool MissileLaunched { get { return _missileLaunched; } set { _missileLaunched = value; } }
+        public bool MissileEnd { get { return _missileEnd; } set { _missileEnd = value; } }
+        public bool IsLaunchedByPlayerShip { get { return _isLaunchedByPlayerShip; } set { _isLaunchedByPlayerShip = value; } }
 
         public Missile(int XBeginning, int YBeginning)
         {
@@ -34,7 +34,7 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Lancement du missile du joueur lors de l'appelle de cette méthode
         /// </summary>
-        /// <param name="playerShip"></param>
+        /// <param name="playerShip">Vaisseau de l'user</param>
         public void LaunchMissile(PlayerShip playerShip)
         {
             //S'il n'y a pas de missile lancé en cours, déclenche le lancement
@@ -55,7 +55,7 @@ namespace Projet_SpicyInvader
             {
                 _y--;
             }
-            else if (isLaunchedByPlayerShip is false)
+            else if (IsLaunchedByPlayerShip is false)
             {
                 _y++;
             }
@@ -70,7 +70,7 @@ namespace Projet_SpicyInvader
             {
                 _missileLaunched = false;
             }
-            else if (missileLaunched is true)
+            else if (MissileLaunched is true)
             {
                 Progress();
             }
@@ -79,7 +79,8 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Met à jour les données du missile ennemies et gère le niveau de difficulté
         /// </summary>
-        /// <param name="Enemies"></param>
+        /// <param name="Enemies">Ennemis</param>
+        /// <param name="difficulty">Définit la difficulté</param>
         public void UpdateEnemies(Invaders Enemies, bool difficulty)
         {
             Random r = new Random();
@@ -94,9 +95,7 @@ namespace Projet_SpicyInvader
             }
             else if (difficulty is true)
             {
-                random = r.Next(2);
-                Progress();
-                DrawMissile();
+                random = r.Next(3);
             }
 
             //Gère l'envoie des missiles ennemies
@@ -106,8 +105,8 @@ namespace Projet_SpicyInvader
             }
             if (random == 1 && _missileLaunched is false)
             {
-                _x = Enemies.invaders[Enemies.NUMBERINVADERS - 1].X;
-                _y = Enemies.invaders[Enemies.NUMBERINVADERS - 1].Y;
+                _x = Enemies.Invaderss[Enemies.NumberInvaders - 1].X;
+                _y = Enemies.Invaderss[Enemies.NumberInvaders - 1].Y;
                 _missileLaunched = true;
             }
         }
@@ -115,18 +114,18 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Gère la collision des missiles ennemies avec le vaisseau ou les missiles de celui-ci
         /// </summary>
-        /// <param name="playerShip"></param>
-        /// <param name="m"></param>
+        /// <param name="playerShip">Vaisseau de l'user</param>
+        /// <param name="m">Missile du vaisseau</param>
         public void CollisionEnemies(PlayerShip playerShip, Missile m)
         {
             //si un missile ennemi touche le vaisseau
             if (hitbox().IntersectsWith(playerShip.hitbox()))
             {
-                playerShip.nbLife--;
+                playerShip.NbLife--;
                 playerShip.ShowLife();
 
                 //Si l'user n'a plus de vie -> PERDU
-                if (playerShip.nbLife == 0)
+                if (playerShip.NbLife == 0)
                 {
                     Game.GameOver(playerShip);
                 }
@@ -191,15 +190,15 @@ namespace Projet_SpicyInvader
                 Console.SetCursorPosition(_x + 2, _y + 1 - i);
                 Console.Write(" ");
             }
-            _x = 1;
-            _y = 2;
-            missileLaunched = false;
+            _x = 10;
+            _y = 1;
+            MissileLaunched = false;
         }
 
         /// <summary>
         /// Hitbox du missile
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retourne la hitbox du missile</returns>
         public Rectangle hitbox()
         {
             return new Rectangle(_x + 2, _y, 1, 2);

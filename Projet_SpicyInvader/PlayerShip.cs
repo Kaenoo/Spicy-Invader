@@ -14,47 +14,38 @@ namespace Projet_SpicyInvader
     /// <summary>
     /// Classe vaisseau
     /// </summary>
-    internal class PlayerShip
+    public class PlayerShip
     {
-        private int _positionSpaceshipX = 120/2;
-        private const int _POSITIONSPACESHIPY = 35;
+        private int _positionX = 120/2;
+        private const int _POSITIONY = 35;
         private bool _isAllLeft = false;
         private bool _alive = true;
         private int _nbLife = 3;
 
-        public int positionSpaceshipX { get { return _positionSpaceshipX; }}
-        public int PositionX { get { return _positionSpaceshipX; } set { _positionSpaceshipX = value; } }
-        public bool alive { get { return _alive; } set { _alive = value; } }
-        public int nbLife { get { return _nbLife; } set { _nbLife = value; } }
-
-        /// <summary>
-        /// Détermine si l'user est en vie
-        /// </summary>
-        /// <returns></returns>
-        public bool Alive()
-        {
-            return _alive;
-        }         
+        public int PositionX { get { return _positionX; } set { _positionX = value; } }
+        public bool Alive { get { return _alive; } set { _alive = value; } }
+        public int NbLife { get { return _nbLife; } set { _nbLife = value; } }
 
         /// <summary>
         /// Déplacement du vaisseau
         /// </summary>
+        /// <param name="boolchoice">Différencie le déplacement de gauche à droite de l'inverse</param>
         public void Move(bool boolchoice)
         {
             //Si c'est faux, il se déplace à gauche, si c'est vrai, à droite.                    
             if (boolchoice == false)
             {
-                if (_positionSpaceshipX > 5)
+                if (_positionX > 5)
                 {
-                    _positionSpaceshipX--;
+                    _positionX--;
                     _isAllLeft = true;
                 }
             }
             else if (boolchoice == true)
             {
-                if (_positionSpaceshipX < 110)
+                if (_positionX < 110)
                 {
-                    _positionSpaceshipX++;
+                    _positionX++;
                     _isAllLeft = false;
                 }
             }        
@@ -66,8 +57,8 @@ namespace Projet_SpicyInvader
         public void Draw()
         {
             ClearSpaceship();
-            Console.SetCursorPosition(_positionSpaceshipX, _POSITIONSPACESHIPY);
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.SetCursorPosition(_positionX, _POSITIONY);
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             Console.Write("('-')");
             Console.ResetColor();
         }
@@ -81,26 +72,26 @@ namespace Projet_SpicyInvader
             {
                 if (_isAllLeft == true)
                 {
-                    if (_positionSpaceshipX == 6)
+                    if (_positionX == 6)
                     {
                         break;
                     }
                     else
                     {
-                        Console.SetCursorPosition(_positionSpaceshipX + 5 - i , 35);
+                        Console.SetCursorPosition(_positionX + 5 - i , 35);
                         Console.Write("  ");
 
                     }
                 }
                 else
                 {
-                    if (_positionSpaceshipX == 109)
+                    if (_positionX == 109)
                     {
                         break;                            
                     }
                     else
                     {
-                        Console.SetCursorPosition(_positionSpaceshipX - i , 35);
+                        Console.SetCursorPosition(_positionX - i , 35);
                         Console.Write(" ");
                     }
                 }
@@ -114,7 +105,7 @@ namespace Projet_SpicyInvader
         {
             for (int i = 0; i < 5; i++)
             {
-                Console.SetCursorPosition(_positionSpaceshipX + 3 - i, 35);
+                Console.SetCursorPosition(_positionX + 3 - i, 35);
                 Console.Write("  ");
             }
         }
@@ -122,10 +113,10 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// hitbox du vaisseau
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Retourne la hitbox du vaisseau</returns>
         public Rectangle hitbox()
         {
-            return new Rectangle(_positionSpaceshipX, _POSITIONSPACESHIPY, 5, 1);
+            return new Rectangle(_positionX, _POSITIONY, 5, 1);
         }
 
         /// <summary>
@@ -134,7 +125,7 @@ namespace Projet_SpicyInvader
         public void ShowLife()
         {
             Console.SetCursorPosition(110, 38);
-            Console.WriteLine($"Life : {nbLife}");
+            Console.WriteLine($"Life : {NbLife}");
         }
     }    
 }

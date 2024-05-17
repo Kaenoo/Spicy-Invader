@@ -6,23 +6,26 @@
 using System;
 using System.Threading;
 using System.Windows.Input;
+using NAudio;
 
 namespace Projet_SpicyInvader
 {
-    internal class Game
+    public class Game
     {
 
         /// <summary>
         /// Lancement du programme
         /// </summary>
         /// <param name="args"></param>
-        [STAThread]
+        [STAThread] //Permet de gérer plusieurs objets exécutés simultanément.
+                    //Si le Thread doit attendre la fin d'une opération fastidieuse, cela permet à un autre thread d'être exécuté.
         static void Main()
         {
             //initialisation des dimensions de la fenêtre de la console
             Console.WindowWidth = 120;
             Console.WindowHeight = 40;
             Console.CursorVisible = false;
+
             //Lancement du menu du jeu
             GameMenu gameMenu = new GameMenu();
             gameMenu.Menu();
@@ -31,6 +34,8 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Lance le jeu
         /// </summary>
+        /// <param name="difficulty">Définit le niveau de difficulté</param>
+        /// <returns></returns>
         public static int GameSP(bool difficulty)
         {
             //Instanciation des classes
@@ -39,30 +44,40 @@ namespace Projet_SpicyInvader
             Missile missile = new Missile(playerShip.PositionX, 33);
             Missile missileEnemies = new Missile(5, 5);
             Wall wall = new Wall();
+            SpaceshipInvader bigEnemy = new SpaceshipInvader();
             Score scoreGame = new Score();
+            int speedGame = 0;
+            if (difficulty is false)
+            {
+                speedGame = 10;
+            }
+            else if (difficulty is true)
+            {
+                speedGame = 3;
+            }
 
             badInvaders.CreateInvaders();
             wall.CreateWallOfBrick();
 
             //boucle du jeu continue tant que le joueur est en vie
-            while (playerShip.alive is true)
+            while (playerShip.Alive is true)
             {
                 scoreGame.AddPoints();
                 playerShip.ShowLife();
                 KeyPressChosen(playerShip, missile);
-                Update(playerShip, missile, badInvaders, missileEnemies, difficulty);
-                Draw(playerShip, missile, badInvaders, wall, missileEnemies);
-                Collision(playerShip, missile, badInvaders, wall, missileEnemies, scoreGame);
-                Thread.Sleep(10);
+                Update(playerShip, missile, badInvaders, missileEnemies, difficulty, bigEnemy);
+                Draw(playerShip, missile, badInvaders, wall, missileEnemies, bigEnemy);
+                Collision(playerShip, missile, badInvaders, wall, missileEnemies, bigEnemy,scoreGame);
+                Thread.Sleep(speedGame);
             }
-            return scoreGame.score;
+            return scoreGame.Scoree;
         }
 
         /// <summary>
         /// Exécute une action en fonction de la touche pressée
         /// </summary>
-        /// <param name="playerShip"></param>
-        /// <param name="m"></param>
+        /// <param name="playerShip">Vaisseau de l'user</param>
+        /// <param name="m">Missile du vaisseau</param>
         public static void KeyPressChosen(PlayerShip playerShip, Missile m)
         {
             if (Keyboard.IsKeyDown(Key.Left)) //Si l'user appuie sur la fleche de gauche, vaisseau va à gauche
@@ -92,28 +107,38 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Mise à jour de l'emplacement des objets
         /// </summary>
-        /// <param name="playerShip"></param>
-        /// <param name="m"></param>
-        public static void Update(PlayerShip playerShip, Missile m, Invaders enemies, Missile ME, bool difficulty)
+        /// <param name="playerShip">Vaisseau de l'user</param>
+        /// <param name="m">Missile de l'user</param>
+        /// <param name="enemies">Ennemis</param>
+        /// <param name="ME">Missile de l'ennemi</param>
+        /// <param name="difficulty">Niveau de difficulté</param>
+        /// <param name="bigEnemy">Vaisseau de l'ennemi rouge</param>
+        public static void Update(PlayerShip playerShip, Missile m, Invaders enemies, Missile ME, bool difficulty, SpaceshipInvader bigEnemy)
         {
             enemies.Update();
             m.Update();
             ME.UpdateEnemies(enemies, difficulty);
+            bigEnemy.Update();
         }
 
         /// <summary>
         /// Dessine les objets à leur position actuelle
         /// </summary>
-        /// <param name="playerShip"></param>
-        /// <param name="m"></param>
-        public static void Draw(PlayerShip playerShip, Missile m, Invaders enemies, Wall walls, Missile ME)
+        /// <param name="playerShip">Vaisseau de l'user</param>
+        /// <param name="m">Missile de l'user</param>
+        /// <param name="enemies">Ennemis</param>
+        /// <param name="walls">Mur</param>
+        /// <param name="ME">Missile de l'ennemi</param>
+        /// <param name="bigEnemy">Vaisseau de l'ennemi rouge</param>
+        public static void Draw(PlayerShip playerShip, Missile m, Invaders enemies, Wall walls, Missile ME, SpaceshipInvader bigEnemy)
         {
             playerShip.Draw();
             walls.Draw();
             m.DrawMissile();
             enemies.Draw();
+            bigEnemy.Draw();
 
-            if (ME.missileLaunched is true)
+            if (ME.MissileLaunched is true)
             {
                 ME.Progress();
                 ME.DrawMissile();
@@ -123,21 +148,25 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Gère les collisions de toutes les classes
         /// </summary>
-        /// <param name="playerShip"></param>
-        /// <param name="m"></param>
-        /// <param name="enemies"></param>
-        /// <param name="wall"></param>
-        /// <param name="score"></param>
-        public static void Collision(PlayerShip playerShip, Missile m, Invaders enemies, Wall wall, Missile ME, Score score)
+        /// <param name="playerShip">Vaisseau de l'user</param>
+        /// <param name="m">Missile de l'user</param>
+        /// <param name="enemies">Ennemis</param>
+        /// <param name="wall">Mur</param>
+        /// <param name="ME">Missile de l'ennemi</param>
+        /// <param name="BigEnemy">Vaisseau de l'ennemi rouge</param>
+        /// <param name="score">Score</param>
+        public static void Collision(PlayerShip playerShip, Missile m, Invaders enemies, Wall wall, Missile ME, SpaceshipInvader BigEnemy, Score score)
         {
             enemies.Collision(m, score, playerShip);
             ME.CollisionEnemies(playerShip, m);
             wall.Collision(m, ME);
+            BigEnemy.Collision(m, score);
         }
 
         /// <summary>
         /// Si l'user perd
         /// </summary>
+        /// <param name="playerShip">Vaisseau de l'user</param>
         public static void GameOver(PlayerShip playerShip)
         {
             Console.SetCursorPosition(10, 15);
@@ -153,7 +182,7 @@ namespace Projet_SpicyInvader
             Console.ResetColor();
             Console.ReadLine();
             Console.Clear();
-            playerShip.alive = false;
+            playerShip.Alive = false;
         }
     }
 }

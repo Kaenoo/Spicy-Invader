@@ -7,7 +7,7 @@ using System;
 
 namespace Projet_SpicyInvader
 {
-    internal class Wall
+    public class Wall
     {
         private int _x = 10;
         private int _y = 28;
@@ -18,12 +18,12 @@ namespace Projet_SpicyInvader
         private Brick[,] _brick = new Brick[_WIDTHWALL, _HEIGHTWALL];
         private bool _isTouched = false;
 
-        public int x { get { return _x; } set { _x = value; } }
-        public int y { get { return _y; } set { _y = value; } }
+        public int X { get { return _x; } set { _x = value; } }
+        public int Y { get { return _y; } set { _y = value; } }
         public int WIDTHWALL { get { return _WIDTHWALL; } }
         public int HEIGHTWALL { get { return _HEIGHTWALL; } }
-        public Wall[] walls { get { return _walls; } set { _walls = value; } }
-        public Brick[,] brick {  get { return _brick; } }
+        public Wall[] Walls { get { return _walls; } set { _walls = value; } }
+        public Brick[,] Brick {  get { return _brick; } }
 
         /// <summary>
         /// Créé les murs
@@ -38,10 +38,10 @@ namespace Projet_SpicyInvader
                     for (int i = 0; i < _WIDTHWALL; i++)
                     {
                         _walls[k]._brick[i, j] = new Brick();
-                        _walls[k]._brick[i, j].x = _x + i;
-                        _walls[k]._brick[i, j].y = _y + j;
+                        _walls[k]._brick[i, j].X = _x + i;
+                        _walls[k]._brick[i, j].Y = _y + j;
                         Console.SetCursorPosition(_x + i, _y + j);
-                        Console.WriteLine(_walls[k]._brick[i, j].brick);
+                        Console.WriteLine(_walls[k]._brick[i, j].Bricks);
                     }
                 }
                 _x += 25;                
@@ -62,7 +62,7 @@ namespace Projet_SpicyInvader
                     for (int i = 0; i < _WIDTHWALL; i++)
                     {
                         Console.SetCursorPosition(_x + i, _y + j);
-                        Console.WriteLine(w._brick[i, j].brick);
+                        Console.WriteLine(w._brick[i, j].Bricks);
                     }
                 }
                 _x += 25;
@@ -74,19 +74,19 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Si le mur est touché par un missile
         /// </summary>
-        /// <param name="a"></param>
-        /// <param name="b"></param>
-        /// <param name="Wall1"></param>
+        /// <param name="a">Premier index du tableau</param>
+        /// <param name="b">Deuxième index du tableau</param>
+        /// <returns>Retourne si le mur a été touché ou non</returns>
         public bool Touch(int a, int b) 
         {
-            switch (_brick[a, b].brick)
+            switch (_brick[a, b].Bricks)
             {
                 case "█":
-                    _brick[a, b].brick = "▒";
+                    _brick[a, b].Bricks = "▒";
                     _isTouched = true;
                     return _isTouched;
                 case "▒":
-                    _brick[a, b].brick = " ";
+                    _brick[a, b].Bricks = " ";
                     _isTouched = true;
                     return _isTouched;
                 default: 
@@ -98,8 +98,8 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Gère la collision entre les murs et les missiles
         /// </summary>
-        /// <param name="m"></param>
-        /// <param name="ME"></param>
+        /// <param name="m">Missile du vaisseau</param>
+        /// <param name="ME">Missile de l'ennemi</param>
         public void Collision(Missile m, Missile ME)
         {
             //Abime une brique du mur si touchée 1 fois, la détruit si touchée 2 fois + supprime le missile lorsqu'il touche une brique
@@ -110,7 +110,7 @@ namespace Projet_SpicyInvader
                     for (int i = 0; i < _WIDTHWALL; i++)
                     {
                         //Si un missile de l'user touche une brique
-                        if (w.brick[i, j].x == m.X + 2 && w.brick[i, j].y == m.Y)
+                        if (w.Brick[i, j].X == m.X + 2 && w.Brick[i, j].Y == m.Y)
                         {
                             bool collision = false;
                             collision = w.Touch(i, j);
@@ -123,7 +123,7 @@ namespace Projet_SpicyInvader
                         }
 
                         //Si un missile de l'ennemi touche une brique
-                        if (w.brick[i, j].x == ME.X + 2 && w.brick[i, j].y == ME.Y)
+                        if (w.Brick[i, j].X == ME.X + 2 && w.Brick[i, j].Y == ME.Y)
                         {
                             bool collision = false;
                             collision = w.Touch(i, j);

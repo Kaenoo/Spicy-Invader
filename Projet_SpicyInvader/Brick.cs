@@ -7,7 +7,7 @@ using System;
 
 namespace Projet_SpicyInvader
 {
-    internal class Brick
+    public class Brick
     {
         //Position de la brique
         private int _x;
@@ -15,8 +15,8 @@ namespace Projet_SpicyInvader
 
         //Style de la brique
         private string _brick = "█";
-        public int x { get { return _x; } set { _x = value; } }
-        public int y { get { return _y; } set { _y = value; } }
-        public string brick { get { return _brick; } set { _brick = value; } }
+        public int X { get { return _x; } set { _x = value; } }
+        public int Y { get { return _y; } set { _y = value; } }
+        public string Bricks { get { return _brick; } set { _brick = value; } }
     }
 }

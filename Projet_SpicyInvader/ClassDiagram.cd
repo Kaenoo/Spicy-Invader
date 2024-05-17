@@ -1,60 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Projet_SpicyInvader.Brick">
-    <Position X="14" Y="11.5" Width="1.5" />
+    <Position X="1.5" Y="9.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAIAAQAAAACAAAAAAAAAQAAAAAAAABgAAAAAAA=</HashCode>
       <FileName>Brick.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_SpicyInvader.Game">
-    <Position X="7" Y="6.75" Width="1.5" />
+    <Position X="7.5" Y="0.75" Width="8" />
     <TypeIdentifier>
       <HashCode>AAQAgAAAAIAAAgAAAAAAAAAAAABAAAAAAAAABAEAAAA=</HashCode>
       <FileName>Game.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_SpicyInvader.GameMenu">
-    <Position X="2.75" Y="4.5" Width="1.5" />
+    <Position X="2.75" Y="4.5" Width="3.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQgAwAAAAAAAAAEIAAQAAAAAAABAAAA=</HashCode>
+      <HashCode>AAAAAAAIAAAAAQgAwAACAAAAAAEIAAQAAAAAAABAAAA=</HashCode>
       <FileName>GameMenu.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_SpicyInvader.Invaders">
-    <Position X="12.5" Y="2" Width="2" />
+    <Position X="14.5" Y="3.5" Width="4" />
     <TypeIdentifier>
       <HashCode>AIwCAAYIAIQAEgAAAAAAAAQAIAAAAAAAAAASAAQAYFA=</HashCode>
       <FileName>Invaders.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_SpicyInvader.Missile">
-    <Position X="8" Y="0.5" Width="2.25" />
+    <Position X="5.5" Y="10" Width="3.75" />
     <TypeIdentifier>
       <HashCode>AAQAAEQIAAQIIAQAAAAgAAAAAAEAgAgIBgAAAACBYAA=</HashCode>
       <FileName>Missile.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_SpicyInvader.PlayerShip">
-    <Position X="6.75" Y="10.5" Width="2.25" />
+    <Position X="7.5" Y="4.75" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AACAAAQAAJAgAgAgAAAAAAAJBAIIIBQAAAAAAAAACAA=</HashCode>
+      <HashCode>AACAAAQAAJAgAgAgAAAAAAAJBAIIIBAAAAAAAAAACAA=</HashCode>
       <FileName>PlayerShip.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_SpicyInvader.Score">
-    <Position X="3.75" Y="11.25" Width="1.5" />
+    <Position X="0.5" Y="5.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAQAgAAAAAIAAAAIAAAAAAAAAAAAAAgAEA=</HashCode>
       <FileName>Score.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Projet_SpicyInvader.Wall">
-    <Position X="10.75" Y="10.5" Width="1.75" />
+    <Position X="11" Y="5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>ARACgAAIAIQAAgACBAAAAAAAAQEAAAAAAaBgABAAAAA=</HashCode>
       <FileName>Wall.cs</FileName>
     </TypeIdentifier>
+  </Class>
+  <Class Name="System.Object" Collapsed="true">
+    <Position X="4.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

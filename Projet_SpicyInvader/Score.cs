@@ -8,13 +8,13 @@ using System.Collections.Generic;
 
 namespace Projet_SpicyInvader
 {
-    internal class Score
+    public class Score
     {
         private int _indicator = 0;
         private int _score = 0;
         private int _highScore = 0;
-        public int score { get { return _score; } set { _score = value; } }
-        public int highScore { get { return _highScore; } }
+        public int Scoree { get { return _score; } set { _score = value; } }
+        public int HighScore { get { return _highScore; } }
 
         /// <summary>
         /// Ajoute des points au score

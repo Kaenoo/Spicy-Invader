@@ -13,7 +13,7 @@ using System.Runtime.CompilerServices;
 
 namespace Projet_SpicyInvader
 {
-    internal class Invaders
+    public class Invaders
     {        
         private int _indicator = 0;
         private int _y = 3;
@@ -21,13 +21,13 @@ namespace Projet_SpicyInvader
         private int _borderLimitLeft = 5;
         private int _borderLimitRight = 110;
         internal bool goLeftElseRight = false;
-        private int _NUMBERINVADERS = 15;
+        private int _numberInvaders = 15;
         List<Invaders> _invaders = new List<Invaders>();
 
         public int Y { get { return _y; } set { _y = value; } }
         public int X { get { return _x; } set { _x = value; } }
-        public int NUMBERINVADERS { get { return _NUMBERINVADERS; } set { _NUMBERINVADERS = value;} }
-        public List<Invaders> invaders { get { return _invaders; } set { _invaders = value; } }
+        public int NumberInvaders { get { return _numberInvaders; } set { _numberInvaders = value;} }
+        public List<Invaders> Invaderss { get { return _invaders; } set { _invaders = value; } }
 
         /// <summary>
         /// Déplacement de l'ennemi
@@ -81,10 +81,10 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void CreateInvaders()
         {
-            _y = 3;
+            _y = 5;
             _x = 5;
 
-            for (int j = 0; j < _NUMBERINVADERS; j++)
+            for (int j = 0; j < _numberInvaders; j++)
             {
                 if (j == 5 || j == 10)
                 {
@@ -92,9 +92,9 @@ namespace Projet_SpicyInvader
                     this._y++;
                 }
 
-                invaders.Add(new Invaders());
-                invaders[j]._x = this._x;
-                invaders[j]._y = this._y;
+                Invaderss.Add(new Invaders());
+                Invaderss[j]._x = this._x;
+                Invaderss[j]._y = this._y;
 
                 this._x += 5;
             }            
@@ -154,11 +154,12 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Gère les collisions de l'ennnemi
         /// </summary>
-        /// <param name="m"></param>
-        /// <param name="score"></param>
+        /// <param name="m">Missile du vaisseau</param>
+        /// <param name="score">Score de la partie</param>
+        /// <param name="playerShip">Vaisseau de l'user</param>
         public void Collision(Missile m, Score score, PlayerShip playerShip)
         {
-            for (int j = 0; j < _NUMBERINVADERS; j++)
+            for (int j = 0; j < _numberInvaders; j++)
             {
                 //Supprime l'ennemi et le missile si les 2 se touchent
                 if (m.hitbox().IntersectsWith(_invaders[j].hitbox()))
@@ -166,20 +167,20 @@ namespace Projet_SpicyInvader
                     m.UnDrawMissileActualPosition();
                     _invaders[j].UndrawActualPosition();
                     _invaders.RemoveAt(j);
-                    _NUMBERINVADERS--;
+                    _numberInvaders--;
 
                     //Si le groupe d'ennemi est tué, un autre réapparait
                     if (_invaders.Count() == 0)
                     {
-                        _NUMBERINVADERS = 15;
+                        _numberInvaders = 15;
                         CreateInvaders();
                     }
-                    score.score += 20;
+                    score.Scoree += 20;
                     break;
                 }
             }
             //Si l'ennemi est sur la même hauteur que le vaisseau -> PERDU
-            if (_invaders[_NUMBERINVADERS - 1].Y == 35)
+            if (_invaders[_numberInvaders - 1].Y == 35)
             {
                 Game.GameOver(playerShip);
             }
@@ -188,7 +189,7 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Hitbox de l'ennemi
         /// </summary>
-        /// <returns>Rectangle</returns>
+        /// <returns>retourne la hitbox</returns>
         public Rectangle hitbox()
         {
             return new Rectangle(_x, _y, 5, 1);
