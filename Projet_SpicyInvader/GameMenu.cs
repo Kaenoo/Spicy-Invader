@@ -10,21 +10,28 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
 using System.Linq;
+using System.Diagnostics;
 
 namespace Projet_SpicyInvader
 {
     public class GameMenu
     {
-        bool _difficultyHard = false;
+        List<string> dataScore = new List<string>();
         string _path = @"D:\C#\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\Score\Score.txt";
         string _regName = @"^\w+$";
-        List<string> dataScore = new List<string>();
+
         int _cursorY = 10;
         string _cursorBeg = "<<";
         string _cursorEnd = ">>";
+
         string[] _menuChoice = new string[] { "  Jouer", " Options", "A propos", "  Score", " Quitter"};
-        int _menuPlacement = 10;
+        string[] _optionChoice = new string[] { " Son Désactivé", "  Mode facile", "Revenir au menu"};
+        int _menuPositionY = 10;
+        int _menuPositionX = 50;
+
+        bool _difficultyHard = false;
         bool gamePlayed = false;
+        string namePlayer;
         int finalScore = 0;
         public bool DifficultyHard { get { return _difficultyHard; } }
 
@@ -33,9 +40,6 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void Menu()
         {
-            string choiceOfMenu;
-            string namePlayer;
-
             do
             {
                 Console.SetCursorPosition(0, 0);
@@ -57,7 +61,7 @@ namespace Projet_SpicyInvader
                         {
                             Console.Clear();
                             Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine("\n\nEntrez votre Pseudo, il ne doit pas avoir d'espace !!\n");
+                            Console.WriteLine("\n\nEntrez un Pseudo, il ne doit pas avoir d'espace !!\n");
                             Console.ResetColor();
                         }
                         gamePlayed = false;
@@ -76,11 +80,11 @@ namespace Projet_SpicyInvader
 
                 for (int i = 0; i < _menuChoice.Length; i++)
                 {
-                    Console.SetCursorPosition(50, _menuPlacement);
+                    Console.SetCursorPosition(_menuPositionX, _menuPositionY);
                     Console.Write(_menuChoice[i]);
-                    _menuPlacement++;
+                    _menuPositionY++;
                 }
-                _menuPlacement = 10;
+                _menuPositionY = 10;
 
                 Console.ForegroundColor = ConsoleColor.DarkGreen;
                 Console.SetCursorPosition(47, _cursorY);
@@ -95,19 +99,21 @@ namespace Projet_SpicyInvader
             } while (true);
         }
 
-
+        /// <summary>
+        /// Gère le déplacement dans le menu avec les touches pressées
+        /// </summary>
         public void KeyPressChosen()
         {
             if (Keyboard.IsKeyDown(Key.Down)) //Si l'user appuie sur la fleche de bas
             {
                 if (_cursorY >= 14)
                 {
-                    EraseCursor();
+                    EraseCursor(60);
                     _cursorY = 10;
                 }
                 else
                 {
-                    EraseCursor();
+                    EraseCursor(60);
                     _cursorY++;
                 }
             }
@@ -115,12 +121,12 @@ namespace Projet_SpicyInvader
             {
                 if (_cursorY <= 10)
                 {
-                    EraseCursor();
+                    EraseCursor(60);
                     _cursorY = 14;
                 }
                 else
                 {
-                   EraseCursor();
+                   EraseCursor(60);
                     _cursorY--;
                 }
             }
@@ -137,17 +143,21 @@ namespace Projet_SpicyInvader
 
                     case 11:
                         Console.Clear();
+                        _cursorY = 10;
                         Options();
                         break;
 
                     case 12:
-                        Console.Clear();
+                        do
+                        {
+                            Console.Clear();
+                            Thread.Sleep(60);
+                        } while (false); 
                         finish = false;
                         do
                         {
                             Console.SetCursorPosition(0, 0);
                             Console.WriteLine("Bienvenue dans Space Invaders !!\n\nLe but du jeu est d'éliminer les ennemis et survivre le plus longtemps sans se faire toucher par le missile\nAttention, si l'ennemi te touche tu as également perdu !\nTu ne possèdes que 3 vies, alors à toi d'assurer pour faire le meilleur score !!\n\nCommandes : flèche de gauche et droite pour se déplacer, ESPACE pour tirer des missiles\n\nAppuyez sur la touche Enter pour revenir au menu.");
-                            Thread.Sleep(50);
                             if (Keyboard.IsKeyDown(Key.Enter))
                             {
                                 finish = true;
@@ -158,13 +168,16 @@ namespace Projet_SpicyInvader
                         break;
 
                     case 13:
-                        Console.Clear();
+                        do
+                        {
+                            Console.Clear();
+                            Thread.Sleep(60);
+                        } while (false);
                         finish = false;
                         do
                         {
                             Console.SetCursorPosition(0, 0);
                             Score(dataScore);
-                            Thread.Sleep(50);
                             if (Keyboard.IsKeyDown(Key.Enter))
                             {
                                 finish = true;
@@ -183,79 +196,93 @@ namespace Projet_SpicyInvader
             }
         }
 
-
         /// <summary>
         /// Options du jeu (Son et difficultés)
         /// </summary>
         public void Options()
         {
-            string choiceOfOptions;
-            Console.WriteLine("1. Activer / Désactiver le son\n2. Niveau de difficulté\n3. Revenir au menu\n");
-            Console.Write("Mettez le chiffre de l'action que vous souhaitez réaliser : ");
-            choiceOfOptions = Console.ReadLine();
+            bool soundActivated = false;
+            int endCursorPositionX = 66;
+            do
+            {
+                Console.SetCursorPosition(50, _cursorY);
+                for (int i = 0; i < _optionChoice.Length; i++)
+                {
+                    Console.SetCursorPosition(_menuPositionX, _menuPositionY);
+                    Console.Write(_optionChoice[i]);
+                    _menuPositionY++;
+                }
+                _menuPositionY = 10;
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.SetCursorPosition(47, _cursorY);
+                Console.WriteLine(_cursorBeg);
+                Console.SetCursorPosition(endCursorPositionX, _cursorY);
+                Console.WriteLine(_cursorEnd);
+                Console.ResetColor();
 
-            if (choiceOfOptions == "1")
-            {
-                Console.Clear();
-                Console.WriteLine("1. Activer le son\n2. Désactiver le son\n");
-                Console.Write("Mettez le chiffre de l'action que vous souhaitez réaliser : ");
-                choiceOfOptions = Console.ReadLine();
-
-                if (choiceOfOptions == "1")
+                Thread.Sleep(70);
+                if (Keyboard.IsKeyDown(Key.Down)) //Si l'user appuie sur la fleche de bas
                 {
-                    Console.Clear();
-                    ShowAndErase("Son activé", TimeSpan.FromSeconds(1));
-                    Menu();
+                    if (_cursorY >= 12)
+                    {
+                        EraseCursor(endCursorPositionX);
+                        _cursorY = 10;
+                    }
+                    else
+                    {
+                        EraseCursor(endCursorPositionX);
+                        _cursorY++;
+                    }
                 }
-                else if (choiceOfOptions == "2")
+                else if (Keyboard.IsKeyDown(Key.Up)) //Si l'user appuie sur la fleche du haut
                 {
-                    Console.Clear();
-                    ShowAndErase("Son désactivé", TimeSpan.FromSeconds(1));
-                    Menu();
+                    if (_cursorY <= 10)
+                    {
+                        EraseCursor(endCursorPositionX);
+                        _cursorY = 12;
+                    }
+                    else
+                    {
+                        EraseCursor(endCursorPositionX);
+                        _cursorY--;
+                    }
                 }
-                else
+                else if (Keyboard.IsKeyDown(Key.Enter))//Si l'user appuie sur Espace, lance un missile
                 {
-                    Error();
-                    Options();
-                }
-            }
-            else if (choiceOfOptions == "2")
-            {
-                Console.Clear();
-                Console.WriteLine("1. Niveau facile\n2. Niveau difficile\n");
-                Console.Write("Mettez le chiffre de l'action que vous souhaitez réaliser : ");
-                choiceOfOptions = Console.ReadLine();
-
-                if (choiceOfOptions == "1")
-                {
-                    Console.Clear();
-                    _difficultyHard = false;
-                    ShowAndErase("Niveau facile activé", TimeSpan.FromSeconds(1));
-                    Menu();
-                }
-                else if (choiceOfOptions == "2")
-                {
-                    Console.Clear();
-                    _difficultyHard = true;
-                    ShowAndErase("Niveau difficile activé", TimeSpan.FromSeconds(1));
-                    Menu();
-                }
-                else
-                {
-                    Error();
-                    Options();
-                }
-            }
-            else if (choiceOfOptions == "3")
-            {
-                Console.Clear();
-                Menu();
-            }
-            else
-            {
-                Error();
-                Options();
-            }
+                    switch (_cursorY)
+                    {
+                        case 10:
+                            soundActivated = !soundActivated;
+                            if (soundActivated is true)
+                            {
+                                _optionChoice[0] = "  Son Activé   ";
+                            }
+                            else
+                            {
+                                _optionChoice[0] = " Son Désactivé";
+                            }
+                            break;
+                        case 11:
+                            _difficultyHard = !_difficultyHard;
+                            if (_difficultyHard is true)
+                            {
+                                _optionChoice[1] = " Mode hardcore";
+                            }
+                            else
+                            {
+                                _optionChoice[1] = "  Mode facile  ";
+                            }
+                            break;
+                        case 12:
+                            _cursorY = 11;
+                            Console.Clear();
+                            Menu();
+                            break;
+                        default:
+                            break;
+                    }
+                }                
+            } while (true);
         }
 
         /// <summary>
@@ -302,11 +329,11 @@ namespace Projet_SpicyInvader
             Console.Clear();
         }
 
-        public void EraseCursor()
+        public void EraseCursor(int endCursorPosition)
         {
             Console.SetCursorPosition(47, _cursorY);
             Console.Write("  ");
-            Console.SetCursorPosition(60, _cursorY);
+            Console.SetCursorPosition(endCursorPosition, _cursorY);
             Console.Write("  ");
         }
 

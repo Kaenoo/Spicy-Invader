@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Brick.cs" />
-    <Compile Include="Menuuu.cs" />
     <Compile Include="SpaceshipInvader.cs" />
     <Compile Include="GameMenu.cs" />
     <Compile Include="Wall.cs" />

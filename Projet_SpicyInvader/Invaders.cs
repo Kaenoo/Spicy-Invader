@@ -55,8 +55,8 @@ namespace Projet_SpicyInvader
                         foreach (Invaders enemiess in _invaders)
                         {
                             enemiess._y++;
-                            Console.SetCursorPosition(enemiess._x, enemiess._y - 1);
-                            Console.WriteLine("     ");
+                            Console.SetCursorPosition(enemiess._x -1, enemiess._y - 1);
+                            Console.WriteLine("      ");
                         }
                         goLeftElseRight = true;
                     }
@@ -92,11 +92,11 @@ namespace Projet_SpicyInvader
                     this._y++;
                 }
 
-                Invaderss.Add(new Invaders());
-                Invaderss[j]._x = this._x;
-                Invaderss[j]._y = this._y;
+                _invaders.Add(new Invaders());
+                _invaders[j]._x = this._x;
+                _invaders[j]._y = this._y;
 
-                this._x += 5;
+                this._x += 6;
             }            
         }
 
@@ -123,7 +123,7 @@ namespace Projet_SpicyInvader
             {
                 if (goLeftElseRight is false)
                 {
-                    Console.SetCursorPosition(enemies._x, enemies._y);
+                    Console.SetCursorPosition(enemies._x -1, enemies._y);
                     Console.Write(" ");
                 }
                 else if (goLeftElseRight is true)
