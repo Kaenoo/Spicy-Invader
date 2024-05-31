@@ -7,23 +7,91 @@ using System;
 
 namespace Projet_SpicyInvader
 {
+    /// <summary>
+    /// Mur
+    /// </summary>
     public class Wall
     {
+        /// <summary>
+        /// Position X du mur
+        /// </summary>
         private int _x = 10;
+
+        /// <summary>
+        /// Position Y du mur
+        /// </summary>
         private int _y = 28;
+
+        /// <summary>
+        /// Contient le nombre de briques du mur en largeur
+        /// </summary>
         private const int _WIDTHWALL = 15;
+
+        /// <summary>
+        /// Contient le nombre de briques du mur en hauteur
+        /// </summary>
         private const int _HEIGHTWALL= 2;
+
+        /// <summary>
+        /// Contient le nombre de mur
+        /// </summary>
         private const int _NBWALL = 4;
+
+        /// <summary>
+        /// tableau de murs
+        /// </summary>
         private Wall[] _walls = new Wall[_NBWALL];
+
+        /// <summary>
+        /// Tableau de briques à 2 dimensions
+        /// </summary>
         private Brick[,] _brick = new Brick[_WIDTHWALL, _HEIGHTWALL];
+
+        /// <summary>
+        /// Détermine si une brique est touchée ou non
+        /// </summary>
         private bool _isTouched = false;
 
+        /// <summary>
+        /// Position X du mur {get ; set}
+        /// </summary>
         public int X { get { return _x; } set { _x = value; } }
+
+        /// <summary>
+        /// Position Y du mur {get ; set}
+        /// </summary>
         public int Y { get { return _y; } set { _y = value; } }
+
+        /// <summary>
+        /// Contient le nombre de briques du mur en largeur {get ; set}
+        /// </summary>
         public int WIDTHWALL { get { return _WIDTHWALL; } }
+
+        /// <summary>
+        /// Contient le nombre de briques du mur en hauteur {get ; set}
+        /// </summary>
         public int HEIGHTWALL { get { return _HEIGHTWALL; } }
+
+        /// <summary>
+        /// tableau de murs {get ; set}
+        /// </summary>
         public Wall[] Walls { get { return _walls; } set { _walls = value; } }
+
+        /// <summary>
+        /// tableau de briques à 2 dimensions {get ; set}
+        /// </summary>
         public Brick[,] Brick {  get { return _brick; } }
+
+        /// <summary>
+        /// Jeu {get ; set}
+        /// </summary>
+        public Game Game
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         /// <summary>
         /// Créé les murs

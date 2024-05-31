@@ -11,24 +11,70 @@ using System.Runtime.CompilerServices;
 
 namespace Projet_SpicyInvader
 {
+    /// <summary>
+    /// Missile
+    /// </summary>
     public class Missile
     {
+        /// <summary>
+        /// Position X du missile
+        /// </summary>
         internal int _x;
+
+        /// <summary>
+        /// Position Y du missile
+        /// </summary>
         internal int _y;
+
+        /// <summary>
+        /// Détermine si le missile est lancé ou non
+        /// </summary>
         private bool _missileLaunched = false;
+
+        /// <summary>
+        /// Détermine si le missile a fini sa trajectoire ou non
+        /// </summary>
         private bool _missileEnd = false;
+
+        /// <summary>
+        /// Détermine si le missile est lancé par l'user ou l'ennemi
+        /// </summary>
         private bool _isLaunchedByPlayerShip = true;
 
+        /// <summary>
+        /// Détermine si le missile est lancé ou non {get ; set}
+        /// </summary>
         public bool MissileLaunched { get { return _missileLaunched; } set { _missileLaunched = value; } }
+
+        /// <summary>
+        /// Détermine si le missile a fini sa trajectoire ou non {get ; set}
+        /// </summary>
         public bool MissileEnd { get { return _missileEnd; } set { _missileEnd = value; } }
+
+        /// <summary>
+        /// Détermine si le missile est lancé par l'user ou l'ennemi {get ; set}
+        /// </summary>
         public bool IsLaunchedByPlayerShip { get { return _isLaunchedByPlayerShip; } set { _isLaunchedByPlayerShip = value; } }
 
+        /// <summary>
+        /// Classe missile demandant les positions de départ du missile
+        /// </summary>
+        /// <param name="XBeginning"></param>
+        /// <param name="YBeginning"></param>
         public Missile(int XBeginning, int YBeginning)
         {
             _x = XBeginning;
             _y = YBeginning;
         }
+
+        /// <summary>
+        /// Position X du missile {get ; set}
+        /// </summary>
         public int X { get { return _x; } set { _x = value; } }
+
+        /// <summary>
+        /// Position X du missile {get ; set}
+        /// </summary>
         public int Y { get { return _y; } set { _y = value; } }
 
         /// <summary>
@@ -202,6 +248,14 @@ namespace Projet_SpicyInvader
         public Rectangle hitbox()
         {
             return new Rectangle(_x + 2, _y, 1, 2);
+        }
+
+        public Game Game
+        {
+            get => default;
+            set
+            {
+            }
         }
     }
 }

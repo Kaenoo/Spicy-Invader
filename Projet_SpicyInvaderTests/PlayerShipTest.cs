@@ -6,22 +6,9 @@ namespace Projet_SpicyInvaderTests
 {
     internal class PlayerShipTest
     {
-        [TestMethod]
-        public void TestUpdate_MoveRight()
-        {
-            // Arrange
-            Invaders invaders;
-
-            // Act
-            invaders = new Invaders();
-            var initialX = invaders.X;
-            invaders.Update();
-            invaders.Update();
-
-            // Assert
-            Assert.AreNotEqual(invaders.X, initialX);
-        }
-
+        /// <summary>
+        /// Test si lors de l'appel d'une méthode la position X du vaisseau évolue à gauche
+        /// </summary>
         [TestMethod]
         public void TestMove_Left()
         {
@@ -32,10 +19,13 @@ namespace Projet_SpicyInvaderTests
             // Act
             playerShip.Move(false);
 
-            // Assert
+         s   // Assert
             Assert.IsTrue(playerShip.PositionX < initialX);
         }
 
+        /// <summary>
+        /// Test si lors de l'appel d'une méthode la position X du vaisseau évolue à droite
+        /// </summary>
         [TestMethod]
         public void TestMove_Right()
         {
@@ -48,8 +38,6 @@ namespace Projet_SpicyInvaderTests
 
             // Assert
             Assert.IsTrue(playerShip.PositionX > initialX);
-        }
-
-        
+        }        
     }
 }

@@ -12,19 +12,57 @@ using System.Runtime.CompilerServices;
 namespace Projet_SpicyInvader
 {
     /// <summary>
-    /// Classe vaisseau
+    /// Vaisseau de l'user
     /// </summary>
     public class PlayerShip
     {
-        private int _positionX = 120/2;
+        /// <summary>
+        /// Position X du vaisseau, commence au milieu de la console 
+        /// </summary>
+        private int _positionX = Console.WindowWidth / 2;
+
+        /// <summary>
+        /// Position Y du vaisseau se trouvant toujoura sur la même ligne
+        /// </summary>
         private const int _POSITIONY = 35;
+
+        /// <summary>
+        /// Détermine si l'user a atteint la limite du coté gauche ou non
+        /// </summary>
         private bool _isAllLeft = false;
+
+        /// <summary>
+        /// Détermine si l'user est en vie
+        /// </summary>
         private bool _alive = true;
+
+        /// <summary>
+        /// Contient le nombre de vie de l'user
+        /// </summary>
         private int _nbLife = 3;
 
+        /// <summary>
+        /// Position X du vaisseau {get ; set}
+        /// </summary>
         public int PositionX { get { return _positionX; } set { _positionX = value; } }
+
+        /// <summary>
+        /// Détermine si l'user est en vie {get ; set}
+        /// </summary>
         public bool Alive { get { return _alive; } set { _alive = value; } }
+
+        /// <summary>
+        /// Contient le nombre de vie de l'user {get ; set}
+        /// </summary>
         public int NbLife { get { return _nbLife; } set { _nbLife = value; } }
+
+        public Game Game
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         /// <summary>
         /// Déplacement du vaisseau

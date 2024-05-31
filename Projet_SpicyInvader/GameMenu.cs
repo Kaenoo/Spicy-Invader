@@ -4,35 +4,91 @@
 ///Description : Contient les méthodes du menu du jeu
 ///
 using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Input;
-using System.Linq;
-using System.Diagnostics;
 
 namespace Projet_SpicyInvader
 {
+    /// <summary>
+    /// Menu du jeu
+    /// </summary>
     public class GameMenu
     {
-        List<string> dataScore = new List<string>();
+        /// <summary>
+        /// Chemin de fichier
+        /// </summary>
         string _path = @"D:\C#\Module 226\Projet\Projet_SpicyInvader\Projet_SpicyInvader\Score\Score.txt";
+
+        /// <summary>
+        /// Chemin de fichier {get ; set}
+        /// </summary>
+        public string Path { get { return _path; } }
+
+        /// <summary>
+        /// Regex lors du choix d'un username
+        /// </summary>
         string _regName = @"^\w+$";
 
+        /// <summary>
+        /// Position Y du du curseur
+        /// </summary>
         int _cursorY = 10;
+
+        /// <summary>
+        /// Dessin du premier curseur
+        /// </summary>
         string _cursorBeg = "<<";
+
+        /// <summary>
+        /// Dessin du second curseur
+        /// </summary>
         string _cursorEnd = ">>";
 
+        /// <summary>
+        /// Tableau de string contenant les choix du menu
+        /// </summary>
         string[] _menuChoice = new string[] { "  Jouer", " Options", "A propos", "  Score", " Quitter"};
+
+        /// <summary>
+        /// Tableau de string contenant les choix dans le menu options
+        /// </summary>
         string[] _optionChoice = new string[] { " Son Désactivé", "  Mode facile", "Revenir au menu"};
+
+        /// <summary>
+        /// Position Y du menu
+        /// </summary>
         int _menuPositionY = 10;
+
+        /// <summary>
+        /// Position Y du menu
+        /// </summary>
         int _menuPositionX = 50;
 
+        /// <summary>
+        /// Définit le niveau de difficulté
+        /// </summary>
         bool _difficultyHard = false;
+
+        /// <summary>
+        /// Définit si l'user a fait une partie ou non
+        /// </summary>
         bool gamePlayed = false;
+
+        /// <summary>
+        /// Nom de l'user écrit par lui même
+        /// </summary>
         string namePlayer;
+
+        /// <summary>
+        /// Contient le score finale d'une partie
+        /// </summary>
         int finalScore = 0;
+
+        /// <summary>
+        /// Définit le niveau de difficulté {get; set}
+        /// </summary>
         public bool DifficultyHard { get { return _difficultyHard; } }
 
         /// <summary>
@@ -49,11 +105,13 @@ namespace Projet_SpicyInvader
                     bool validName = false;
                     do
                     {
+                        Console.SetCursorPosition(0, 0);
                         Console.Write("Entrez votre Pseudo : ");
                         namePlayer = Console.ReadLine();
                         if (Regex.IsMatch(namePlayer, _regName))
                         {
-                            dataScore.Add($"{namePlayer} : {finalScore}\n");
+                            SaveScore(namePlayer, finalScore.ToString());
+                            namePlayer = "";
                             Console.Clear();
                             validName = true;
                         }
@@ -177,7 +235,7 @@ namespace Projet_SpicyInvader
                         do
                         {
                             Console.SetCursorPosition(0, 0);
-                            Score(dataScore);
+                            Score();
                             if (Keyboard.IsKeyDown(Key.Enter))
                             {
                                 finish = true;
@@ -189,7 +247,6 @@ namespace Projet_SpicyInvader
                     case 14:
                         Console.Clear();
                         ShowAndErase("Fermeture du jeu...", TimeSpan.FromSeconds(1));
-                        SaveScore();
                         Environment.Exit(0);
                         break;
                 }
@@ -220,7 +277,7 @@ namespace Projet_SpicyInvader
                 Console.WriteLine(_cursorEnd);
                 Console.ResetColor();
 
-                Thread.Sleep(70);
+                Thread.Sleep(80);
                 if (Keyboard.IsKeyDown(Key.Down)) //Si l'user appuie sur la fleche de bas
                 {
                     if (_cursorY >= 12)
@@ -289,7 +346,7 @@ namespace Projet_SpicyInvader
         /// Affiche un tableau des score avec le nom des joueurs
         /// </summary>
         /// <param name="scoreData">Tableau de string contenant les données de score (Nom : score)</param>
-        public void Score(List<string> scoreData)
+        public void Score()
         {
             Console.WriteLine("Tableau des Scores\n**************************************\n");
             if (File.Exists(_path))
@@ -297,10 +354,6 @@ namespace Projet_SpicyInvader
                 Console.Write(File.ReadAllText(_path));
             }
 
-            foreach (string score in scoreData)
-            {
-                Console.WriteLine(score);
-            }
             Console.Write("Appuyez sur la touche Enter pour revenir au menu.");
             Console.ReadLine();
             Console.Clear();
@@ -340,9 +393,18 @@ namespace Projet_SpicyInvader
         /// <summary>
         /// Sauvegarde les scores dans un fichier
         /// </summary>
-        public void SaveScore()
+        public void SaveScore(string namePlayer, string finalScore)
         {
-            File.AppendAllLines(_path, dataScore);
+            string datascore = $"{namePlayer} : {finalScore}\n\n";
+            File.AppendAllText(_path, datascore);
+        }
+
+        public Game Game
+        {
+            get => default;
+            set
+            {
+            }
         }
     }
 }

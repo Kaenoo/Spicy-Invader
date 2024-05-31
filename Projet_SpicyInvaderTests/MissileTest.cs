@@ -10,6 +10,9 @@ namespace Projet_SpicyInvaderTests
 {
     internal class MissileTest
     {
+        /// <summary>
+        /// Test si lors de l'appel d'une méthode, un bool s'active
+        /// </summary>
         [TestMethod]
         public void TestLaunchMissile()
         {
@@ -24,6 +27,9 @@ namespace Projet_SpicyInvaderTests
             Assert.IsTrue(missile.MissileLaunched);
         }
 
+        /// <summary>
+        ///Test si lors de l'appel d'une méthode la position Y de l'user évolue
+        /// </summary>
         [TestMethod]
         public void TestProgress_PlayerMissile()
         {
@@ -39,6 +45,9 @@ namespace Projet_SpicyInvaderTests
             Assert.IsTrue(missile.Y < initialY);
         }
 
+        /// <summary>
+        /// Test si lors de l'appel d'une méthode la position Y de l'ennemi évolue
+        /// </summary>
         [TestMethod]
         public void TestProgress_EnemyMissile()
         {

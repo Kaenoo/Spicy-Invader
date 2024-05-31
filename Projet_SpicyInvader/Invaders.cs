@@ -13,29 +13,86 @@ using System.Runtime.CompilerServices;
 
 namespace Projet_SpicyInvader
 {
+    /// <summary>
+    /// Ennemis
+    /// </summary>
     public class Invaders
     {        
-        private int _indicator = 0;
+        /// <summary>
+        /// Définit la vitesse des ennemis à l'aide d'un modulo
+        /// </summary>
+        private int _invadersSpeed = 0;
+
+        /// <summary>
+        /// Position Y de l'ennemi
+        /// </summary>
         private int _y = 3;
+
+        /// <summary>
+        /// Position X de l'ennemi
+        /// </summary>
         private int _x = 5;
+
+        /// <summary>
+        /// Limite de l'écran gauche pour un ennemi
+        /// </summary>
         private int _borderLimitLeft = 5;
+
+        /// <summary>
+        /// Limite de l'écran droite pour un ennemi
+        /// </summary>
         private int _borderLimitRight = 110;
+
+        /// <summary>
+        /// Définit si l'ennemi va à droite où à gauche
+        /// </summary>
         internal bool goLeftElseRight = false;
+
+        /// <summary>
+        /// Contient le nombre d'ennemies encore en vie
+        /// </summary>
         private int _numberInvaders = 15;
+
+        /// <summary>
+        /// Liste contenant tous les ennemies
+        /// </summary>
         List<Invaders> _invaders = new List<Invaders>();
 
+        ///<summary>
+        /// Position Y de l'ennemi {get ; set}
+        /// </summary>
         public int Y { get { return _y; } set { _y = value; } }
+
+        /// <summary>
+        ///  Position X de l'ennemi {get ; set}
+        /// </summary>
         public int X { get { return _x; } set { _x = value; } }
+
+        /// <summary>
+        /// Contient le nombre d'ennemies encore en vie {get ; set}
+        /// </summary>
         public int NumberInvaders { get { return _numberInvaders; } set { _numberInvaders = value;} }
+
+        /// <summary>
+        /// Liste contenant tous les ennemies {get ; set}
+        /// </summary>
         public List<Invaders> Invaderss { get { return _invaders; } set { _invaders = value; } }
+
+        public Game Game
+        {
+            get => default;
+            set
+            {
+            }
+        }
 
         /// <summary>
         /// Déplacement de l'ennemi
         /// </summary>
         public void Update()
         {
-            _indicator += 15;
-            if (_indicator % 10 == 0)
+            _invadersSpeed += 15;
+            if (_invadersSpeed % 10 == 0)
             {
                 foreach (Invaders enemies in _invaders)
                 {
@@ -67,7 +124,7 @@ namespace Projet_SpicyInvader
                         foreach (Invaders enemiess in _invaders)
                         {
                             enemiess._y++;
-                            Console.SetCursorPosition(enemiess._x, enemiess._y - 1);
+                            Console.SetCursorPosition(enemiess._x + 1, enemiess._y - 1);
                             Console.WriteLine("      ");
                         }
                         goLeftElseRight = false;
@@ -81,6 +138,7 @@ namespace Projet_SpicyInvader
         /// </summary>
         public void CreateInvaders()
         {
+            goLeftElseRight = false;
             _y = 5;
             _x = 5;
 
@@ -141,14 +199,6 @@ namespace Projet_SpicyInvader
         {
             Console.SetCursorPosition(_x, _y);
             Console.Write("     ");
-        }
-
-        /// <summary>
-        /// Si un ennemie est touché, il meurt
-        /// </summary>
-        public void InvaderDie(List<Invaders> Enemies, int index)
-        {
-            Enemies.RemoveAt(index);
         }
 
         /// <summary>

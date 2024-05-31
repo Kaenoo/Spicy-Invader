@@ -3,44 +3,53 @@
   "WorkspaceRootPath": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|d:\\c#\\module 226\\projet\\projet_spicyinvader\\projet_spicyinvader\\gamemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:gamemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|d:\\c#\\module 226\\projet\\projet_spicyinvader\\projet_spicyinvader\\wall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:wall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\spaceshipinvader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:spaceshipinvader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\brick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:brick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\invaders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:invaders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\playership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:playership.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\missile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:missile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\invaders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:invaders.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\gamemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:gamemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\brick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:brick.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\wall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:wall.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B7E13FA4-9848-4228-AEDC-67C18993BB8F}|..\\Projet_SpicyInvaderTests\\Projet_SpicyInvaderTests.csproj|d:\\c#\\module 226\\projet\\projet_spicyinvader\\projet_spicyinvadertests\\playershiptest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:score.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B7E13FA4-9848-4228-AEDC-67C18993BB8F}|..\\Projet_SpicyInvaderTests\\Projet_SpicyInvaderTests.csproj|d:\\c#\\module 226\\projet\\projet_spicyinvader\\projet_spicyinvadertests\\invaderstests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B7E13FA4-9848-4228-AEDC-67C18993BB8F}|..\\Projet_SpicyInvaderTests\\Projet_SpicyInvaderTests.csproj|d:\\c#\\module 226\\projet\\projet_spicyinvader\\projet_spicyinvadertests\\missiletest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\classdiagram.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|",
       "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:classdiagram.cd||{59B0B277-7DDF-4E36-A3ED-02DAC5B9E2FA}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\missile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{255144E8-D8CD-4FD4-972C-28760AB57163}|Projet_SpicyInvader.csproj|solutionrelative:missile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -50,7 +59,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,16 +67,39 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
+              "Title": "PlayerShipTest.cs",
+              "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvaderTests\\PlayerShipTest.cs",
+              "RelativeDocumentMoniker": "..\\Projet_SpicyInvaderTests\\PlayerShipTest.cs",
+              "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvaderTests\\PlayerShipTest.cs",
+              "RelativeToolTip": "..\\Projet_SpicyInvaderTests\\PlayerShipTest.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAqwBcAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T13:16:13.36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "InvadersTests.cs",
+              "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvaderTests\\InvadersTests.cs",
+              "RelativeDocumentMoniker": "..\\Projet_SpicyInvaderTests\\InvadersTests.cs",
+              "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvaderTests\\InvadersTests.cs",
+              "RelativeToolTip": "..\\Projet_SpicyInvaderTests\\InvadersTests.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAABTAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T13:13:33.566Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "GameMenu.cs",
               "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\GameMenu.cs",
               "RelativeDocumentMoniker": "GameMenu.cs",
               "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\GameMenu.cs",
               "RelativeToolTip": "GameMenu.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAAACMAAABGAAAA",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAqwA4AAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-19T12:37:59.626Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-19T12:37:59.626Z"
             },
             {
               "$type": "Document",
@@ -77,113 +109,117 @@
               "RelativeDocumentMoniker": "SpaceshipInvader.cs",
               "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\SpaceshipInvader.cs",
               "RelativeToolTip": "SpaceshipInvader.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAqwEgAAAAiAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-16T06:27:44.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-16T06:27:44.707Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 12,
               "Title": "ClassDiagram.cd",
               "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\ClassDiagram.cd",
               "RelativeDocumentMoniker": "ClassDiagram.cd",
               "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\ClassDiagram.cd",
               "RelativeToolTip": "ClassDiagram.cd",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000463|",
-              "WhenOpened": "2024-05-03T13:18:17.395Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-03T13:18:17.395Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "Score.cs",
               "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Score.cs",
               "RelativeDocumentMoniker": "Score.cs",
               "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Score.cs",
               "RelativeToolTip": "Score.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAWAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T07:52:22.183Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T07:52:22.183Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "Brick.cs",
               "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Brick.cs",
               "RelativeDocumentMoniker": "Brick.cs",
               "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Brick.cs",
               "RelativeToolTip": "Brick.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAcAAAA",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAQwC0AAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T07:52:22.195Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T07:52:22.195Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "Wall.cs",
               "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Wall.cs",
               "RelativeDocumentMoniker": "Wall.cs",
               "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Wall.cs",
               "RelativeToolTip": "Wall.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAA5AAAA",
+              "ViewState": "AQIAABQAAAAAAAAAAAAQwAoAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-18T07:52:22.197Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Invaders.cs",
               "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Invaders.cs",
               "RelativeDocumentMoniker": "Invaders.cs",
               "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Invaders.cs",
               "RelativeToolTip": "Invaders.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAAADoAAAAvAAAA",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAqwBAAAAAOAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T07:52:22.198Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T07:52:22.198Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 4,
               "Title": "Missile.cs",
               "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Missile.cs",
               "RelativeDocumentMoniker": "Missile.cs",
               "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Missile.cs",
               "RelativeToolTip": "Missile.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAAwGEAAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwA4AAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T07:52:22.199Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T07:52:22.199Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "PlayerShip.cs",
               "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\PlayerShip.cs",
               "RelativeDocumentMoniker": "PlayerShip.cs",
               "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\PlayerShip.cs",
               "RelativeToolTip": "PlayerShip.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAcwEQAAAAkAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T07:52:22.199Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T07:52:22.199Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "Game.cs",
               "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Game.cs",
               "RelativeDocumentMoniker": "Game.cs",
               "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvader\\Game.cs",
               "RelativeToolTip": "Game.cs",
-              "ViewState": "AQIAAGIAAAAAAAAAAAAwwHAAAAA4AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-18T07:52:22.274Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-18T07:52:22.274Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MissileTest.cs",
+              "DocumentMoniker": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvaderTests\\MissileTest.cs",
+              "RelativeDocumentMoniker": "..\\Projet_SpicyInvaderTests\\MissileTest.cs",
+              "ToolTip": "D:\\C#\\Module 226\\Projet\\Projet_SpicyInvader\\Projet_SpicyInvaderTests\\MissileTest.cs",
+              "RelativeToolTip": "..\\Projet_SpicyInvaderTests\\MissileTest.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAgwDAAAABLAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-31T13:14:22.816Z"
             }
           ]
         }
