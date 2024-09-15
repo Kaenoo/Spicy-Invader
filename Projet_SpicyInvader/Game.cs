@@ -49,7 +49,7 @@ namespace Projet_SpicyInvader
             Wall wall = new Wall();
             SpaceshipInvader bigEnemy = new SpaceshipInvader();
             Score scoreGame = new Score();
-            scoreGame.HighScore = scoreGame.RecupHighscore();
+            //scoreGame.HighScore = scoreGame.RecupHighscore();
             int speedGame = 0;
             if (difficulty is false)
             {

@@ -19,7 +19,7 @@ namespace Projet_SpicyInvaderTests
             // Act
             playerShip.Move(false);
 
-         s   // Assert
+            // Assert
             Assert.IsTrue(playerShip.PositionX < initialX);
         }
 
